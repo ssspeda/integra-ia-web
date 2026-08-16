@@ -1,0 +1,5 @@
+# Redirects para Cloudflare Pages / Netlify. El equivalente Apache está en .htaccess.
+# GitHub Pages no soporta este archivo: ahí el link viejo da 404 (aceptable, es solo preview).
+
+# Páginas fusionadas: gestion-integral era el mismo producto que sistema-fudo.
+/agentes/gestion-integral.html  /agentes/sistema-fudo.html  301

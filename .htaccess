@@ -17,6 +17,11 @@
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+# Páginas fusionadas: gestion-integral era el mismo producto que sistema-fudo.
+<IfModule mod_alias.c>
+  Redirect 301 /agentes/gestion-integral.html /agentes/sistema-fudo.html
+</IfModule>
+
 # Compresión
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/manifest+json
