@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     PÁGINA DE AGENTE — plantilla clonable (Ticket 1.1)
+     Bloques VARIABLES por agente:
+       · <title>, <meta description>, canonical y OG/Twitter
+       · JSON-LD (Service + BreadcrumbList): name, description, url
+       · Breadcrumb (nombre del agente)
+       · Hero: número, ícono, h1, tag, lead, imagen (assets/agentes/<slug>)
+       · "Qué resuelve": párrafos largos
+       · Features (.agent__feats) + mockup (.agent__mock)
+       · "Cómo funciona en la práctica": pasos
+       · CTA: texto prellenado de WhatsApp
+       · "Otros agentes": excluir el actual
+     Todo lo demás (head, nav, footer, clases CSS) es FIJO.
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agente Setter Comercial — leads calificados y agendados | Integra IA</title>
+  <meta name="description" content="Un agente de IA que conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar." />
+  <meta name="author" content="Integra IA" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="canonical" href="https://integraia.com/agentes/setter-comercial.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Integra IA" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:url" content="https://integraia.com/agentes/setter-comercial.html" />
+  <meta property="og:title" content="Agente Setter Comercial — Integra IA" />
+  <meta property="og:description" content="Un agente de IA que conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar." />
+  <meta property="og:image" content="https://integraia.com/assets/agentes/setter-comercial.webp" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Integra IA — Agente Setter Comercial" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agente Setter Comercial — Integra IA" />
+  <meta name="twitter:description" content="Un agente de IA que conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar." />
+  <meta name="twitter:image" content="https://integraia.com/assets/agentes/setter-comercial.webp" />
+
+  <meta name="theme-color" content="#0a0a1f" />
+  <link rel="icon" type="image/png" href="../assets/logo.png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__brand" aria-label="Integra IA — inicio">
+        <img class="nav__logo" src="../assets/logo.webp" alt="" width="42" height="42"
+             onerror="this.onerror=null;this.src='../assets/logo.svg'" />
+        <span class="nav__name">INTEGRA&nbsp;IA</span>
+      </a>
+      <a class="btn btn--small btn--primary" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20el%20Agente%20Setter%20Comercial%20para%20mi%20negocio" target="_blank" rel="noopener">Agendar llamada</a>
+    </div>
+  </header>
+
+  <main class="apage">
+    <div class="container">
+
+      <nav class="apage__crumbs" aria-label="Estás en">
+        <a href="../index.html">Inicio</a>
+        <span aria-hidden="true">→</span>
+        <a href="../index.html#agentes">Agentes</a>
+        <span aria-hidden="true">→</span>
+        <strong>Setter Comercial</strong>
+      </nav>
+
+      <!-- ── HERO DEL AGENTE ── -->
+      <section class="apage__hero">
+        <div>
+          <div class="apage__kicker">
+            <span class="apage__num">04</span>
+            <div class="agent__icon" style="margin-bottom:0" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </div>
+          </div>
+          <h1 class="apage__title">Agente <span class="grad">Setter Comercial</span></h1>
+          <p class="agent__tag">Calificación & agendamiento</p>
+          <p class="apage__lead">Conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar. Tu calendario se llena de oportunidades reales.</p>
+          <div class="apage__hero-ctas">
+            <a class="btn btn--primary" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20el%20Agente%20Setter%20Comercial%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero este agente
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="../index.html#agentes">Ver todos los agentes</a>
+          </div>
+        </div>
+        <figure class="apage__media">
+          <img src="../assets/agentes/setter-comercial.webp" alt="Reunión comercial cerrada con un apretón de manos — caso de éxito del Agente Setter Comercial" width="1600" height="1200" loading="lazy" />
+          <span class="apage__badge">Caso de éxito</span>
+          <figcaption>Consultora comercial en Córdoba</figcaption>
+        </figure>
+      </section>
+
+      <!-- ── DESCRIPCIÓN LARGA ── -->
+      <section class="apage__section">
+        <h2>Qué resuelve este agente</h2>
+        <div class="apage__body">
+        <p>Un calendario lleno de reuniones no sirve si la mitad son curiosos. El Agente Setter conversa con <strong>cada lead</strong> que llega de tus anuncios o redes, responde objeciones y hace las preguntas de calificación que haría un buen setter humano — pero con todos, al instante, sin dejar pasar ninguno.</p>
+        <p>A los que califican les ofrece los horarios de tu agenda real y los <strong>agenda solo</strong>. A los que no, los descarta con elegancia, sin que pierdas tiempo. Tu calendario se llena de oportunidades reales, no de charlas.</p>
+        <p>Y no abandona: hace un seguimiento persistente a los que quedaron a mitad de camino, sin parecer spam, hasta obtener una respuesta.</p>
+        </div>
+      </section>
+
+      <!-- ── FEATURES + MOCKUP ── -->
+      <section class="apage__section">
+        <div class="apage__grid2">
+          <div>
+            <h2>Qué hace por tu negocio</h2>
+            <ul class="agent__feats">
+            <li>Calificación automática de leads</li>
+            <li>Seguimiento persistente sin parecer spam</li>
+            <li>Integración directa con tu agenda</li>
+            </ul>
+          </div>
+          <div class="agent__mock" aria-hidden="true">
+            <p class="mk-head">Reunión agendada</p>
+            <div class="mk-row"><span>Lead</span><b>Calificado ✓</b></div>
+            <div class="mk-row"><span>Objeciones</span><b>Resueltas ✓</b></div>
+            <div class="mk-cal">Mié 15 · 16:00</div>
+            <span class="mk-tag">Sumado a tu calendario</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CÓMO FUNCIONA ── -->
+      <section class="apage__section">
+        <h2>Cómo funciona en la práctica</h2>
+        <ol class="apage__steps">
+        <li class="apage__step"><div><h3>Llega el lead</h3><p>Desde un anuncio, tus redes o tu web. El agente inicia la conversación al instante, cuando el interés está caliente.</p></div></li>
+        <li class="apage__step"><div><h3>Califica conversando</h3><p>Preguntas naturales que detectan si el lead encaja con tu servicio y está listo para comprar.</p></div></li>
+        <li class="apage__step"><div><h3>Agenda directo</h3><p>Le ofrece horarios reales de tu calendario y confirma la reunión, sin idas y vueltas.</p></div></li>
+        <li class="apage__step"><div><h3>Persigue a los tibios</h3><p>Los que no respondieron reciben seguimiento automático con criterio, hasta definir.</p></div></li>
+        </ol>
+      </section>
+
+      <!-- ── CTA FINAL ── -->
+      <section class="apage__cta">
+        <h2>¿Lo querés operando en tu negocio?</h2>
+        <p>Agendá una llamada de diagnóstico gratuita: en 30 minutos te decimos cómo funcionaría este agente con tus procesos reales.</p>
+        <div class="apage__cta-actions">
+          <a class="btn btn--primary btn--xl" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20el%20Agente%20Setter%20Comercial%20para%20mi%20negocio" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+            Hablar por WhatsApp
+          </a>
+          <a class="btn btn--ghost btn--xl" href="../index.html#calculadora">Calculá tu ahorro</a>
+        </div>
+      </section>
+
+      <!-- ── OTROS AGENTES ── -->
+      <section class="apage__others">
+        <h2>Otros agentes de Integra IA</h2>
+        <div class="apage__others-grid">
+        <a class="apage__other" href="gestor-reservas.html"><i>01</i><span>Gestor de Reservas</span></a>
+        <a class="apage__other" href="atencion-cliente.html"><i>02</i><span>Atención al Cliente</span></a>
+        <a class="apage__other" href="gestion-integral.html"><i>03</i><span>Gestión Integral</span></a>
+        <a class="apage__other" href="secretario-ejecutivo.html"><i>05</i><span>Secretario Ejecutivo</span></a>
+        <a class="apage__other" href="prospector.html"><i>06</i><span>Prospector</span></a>
+        <a class="apage__other" href="ecommerce-manager.html"><i>07</i><span>E-Commerce Manager</span></a>
+        <a class="apage__other" href="estudio-creativo.html"><i>08</i><span>Estudio Creativo</span></a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Integra IA — Rosario, Argentina. Todos los derechos reservados.</p>
+      <nav class="footer__legal" aria-label="Legales">
+        <a href="../privacidad.html">Privacidad</a>
+        <a href="../terminos.html">Términos</a>
+        <a href="../index.html">Inicio</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Agente Setter Comercial",
+    "serviceType": "Automatización con agentes de inteligencia artificial",
+    "description": "Un agente de IA que conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar.",
+    "url": "https://integraia.com/agentes/setter-comercial.html",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Integra IA",
+      "url": "https://integraia.com/",
+      "telephone": "+54 9 341 268-5888",
+      "address": { "@type": "PostalAddress", "addressLocality": "Rosario", "addressRegion": "Santa Fe", "addressCountry": "AR" }
+    },
+    "areaServed": [{ "@type": "Country", "name": "Argentina" }, { "@type": "Place", "name": "Global" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://integraia.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Agentes", "item": "https://integraia.com/#agentes" },
+      { "@type": "ListItem", "position": 3, "name": "Setter Comercial", "item": "https://integraia.com/agentes/setter-comercial.html" }
+    ]
+  }
+  </script>
+</body>
+</html>

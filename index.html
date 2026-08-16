@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.replace("no-js","js");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integra IA — Agentes de Inteligencia Artificial para tu negocio</title>
+  <meta name="description" content="Diseñamos e implementamos agentes de IA que atienden clientes, agendan reuniones, venden y gestionan operaciones 24/7. Automatización real para negocios reales." />
+  <meta name="author" content="Integra IA" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="canonical" href="https://integraia.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Integra IA" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:url" content="https://integraia.com/" />
+  <meta property="og:title" content="Integra IA — Tu negocio, operando en loop infinito" />
+  <meta property="og:description" content="Agentes de IA que trabajan por tu negocio las 24 horas. Casos reales, resultados medibles." />
+  <meta property="og:image" content="https://integraia.com/assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Integra IA — Automatización con Inteligencia Artificial" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Integra IA — Tu negocio, operando en loop infinito" />
+  <meta name="twitter:description" content="Agentes de IA que trabajan por tu negocio las 24 horas. Casos reales, resultados medibles." />
+  <meta name="twitter:image" content="https://integraia.com/assets/og-cover.png" />
+
+  <meta name="theme-color" content="#0a0a1f" />
+
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <!-- LCP: el logo del hero se pinta apenas llega — precargarlo recorta el LCP -->
+  <link rel="preload" as="image" href="assets/logo.webp" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-700-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <noscript>
+    <!-- Sin JS las pinceladas nunca se animan: mostrar el logo completo -->
+    <style>#paintAll { opacity: 1 !important; }</style>
+  </noscript>
+</head>
+<body>
+
+  <a class="skip-link" href="#inicio">Saltar al contenido</a>
+
+  <!-- ════════ NAV ════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#inicio" class="nav__brand" aria-label="Integra IA — inicio">
+        <img class="nav__logo" src="assets/logo.webp" alt="" width="42" height="42"
+             onerror="this.onerror=null;this.src='assets/logo.svg'" />
+        <span class="nav__name">INTEGRA&nbsp;IA</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#agentes">Agentes</a>
+        <a href="#integraciones">Integraciones</a>
+        <a href="#casos">Casos</a>
+        <a href="#metodo">Método</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto" class="btn btn--small btn--primary nav__cta">Agendar llamada</a>
+      </nav>
+
+      <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="orb orb--1"></div>
+      <div class="orb orb--2"></div>
+      <div class="hero__grid"></div>
+    </div>
+
+    <!-- Robot 3D (carga diferida; si no carga, el hero queda igual) -->
+    <div class="hero__robot" id="heroRobot" aria-hidden="true"></div>
+
+    <!-- Logo oficial: se "pinta" con máscara de trazos al cargar -->
+    <div class="hero__logo-wrap" aria-hidden="true">
+      <span class="hero__logo-halo"></span>
+      <svg class="hero__logo" viewBox="0 95 625 445" role="img" aria-label="Integra IA">
+        <defs>
+          <mask id="logoPaint" maskUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="625" height="625" fill="#000"/>
+            <!-- UNA sola pincelada continua en forma de 8:
+                 aro grande completo → baja derecho por el cruce →
+                 entra al aro chico POR ABAJO → lo recorre → cierra
+                 ARRIBA contra el grande. dasharray 1600 = oculta desde
+                 el primer frame (el trazo mide ~1360), sin flash -->
+            <path id="paintPath"
+                  d="M306 238 A126 126 0 1 1 118 406 A126 126 0 1 1 306 238 C 346 282, 380 320, 414 349 A90 90 0 0 0 562 280 A90 90 0 0 0 401 225"
+                  fill="none" stroke="#fff" stroke-width="106" stroke-linecap="butt" stroke-linejoin="round"
+                  stroke-dasharray="1600" stroke-dashoffset="1600"/>
+            <!-- Seguro final: garantiza logo completo al terminar -->
+            <rect id="paintAll" x="0" y="0" width="625" height="625" fill="#fff" opacity="0"/>
+          </mask>
+        </defs>
+        <image href="assets/logo.webp" x="0" y="0" width="625" height="625" mask="url(#logoPaint)"/>
+      </svg>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-up"><span class="dot"></span> Automatización con Inteligencia Artificial</p>
+
+      <h1 class="hero__title">
+        <span class="line"><span>Tu negocio,</span></span>
+        <span class="line"><span class="grad">trabajando solo.</span></span>
+      </h1>
+
+      <p class="hero__sub reveal-up">
+        Diseñamos agentes de IA que atienden clientes, agendan reuniones, venden y
+        gestionan operaciones — <strong>24 horas, 7 días, sin intervención humana</strong>.
+        Vos te enfocás en crecer. Ellos hacen el resto.
+      </p>
+
+      <div class="hero__ctas reveal-up">
+        <a class="btn btn--primary btn--magnetic" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20agendar%20una%20llamada" target="_blank" rel="noopener">
+          Agendar una llamada
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--magnetic" href="#casos">Ver resultados reales</a>
+      </div>
+
+      <div class="hero__stats reveal-up">
+        <div class="stat">
+          <span class="stat__num"><span data-count="80" data-suffix="%">0</span></span>
+          <span class="stat__label">menos respuestas manuales</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num"><span data-count="10" data-prefix="+">0</span> hs</span>
+          <span class="stat__label">ahorradas por semana</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">24/7</span>
+          <span class="stat__label">atención sin pausa</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num"><span data-count="20" data-prefix="+" data-suffix="%">0</span></span>
+          <span class="stat__label">más conversión a ventas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ════════ TICKER INTEGRACIONES ════════ -->
+  <div class="ticker" aria-hidden="true">
+    <!-- Feed de actividad: lo que los agentes hacen mientras dormís -->
+    <div class="ticker__track">
+      <span>Reserva confirmada</span><i>∞</i><span>Lead calificado</span><i>∞</i><span>Factura cargada</span><i>∞</i>
+      <span>Cliente atendido a las 3 AM</span><i>∞</i><span>Pedido tomado</span><i>∞</i><span>Reseña de 5 estrellas conseguida</span><i>∞</i>
+      <span>Reunión agendada</span><i>∞</i><span>Stock actualizado</span><i>∞</i><span>Venta recuperada</span><i>∞</i>
+      <span>Delivery notificado</span><i>∞</i><span>Video publicado</span><i>∞</i><span>Queja resuelta a tiempo</span><i>∞</i>
+      <!-- duplicado para loop continuo -->
+      <span>Reserva confirmada</span><i>∞</i><span>Lead calificado</span><i>∞</i><span>Factura cargada</span><i>∞</i>
+      <span>Cliente atendido a las 3 AM</span><i>∞</i><span>Pedido tomado</span><i>∞</i><span>Reseña de 5 estrellas conseguida</span><i>∞</i>
+      <span>Reunión agendada</span><i>∞</i><span>Stock actualizado</span><i>∞</i><span>Venta recuperada</span><i>∞</i>
+      <span>Delivery notificado</span><i>∞</i><span>Video publicado</span><i>∞</i><span>Queja resuelta a tiempo</span><i>∞</i>
+    </div>
+  </div>
+
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifesto">
+    <div class="container">
+      <p class="manifesto__text" id="manifestoText">
+        Cada mensaje sin responder es una venta perdida. Cada tarea repetitiva, tiempo que no vuelve.
+        <em>Nosotros cerramos ese loop:</em> donde tu equipo termina, nuestros agentes continúan.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════ AGENTES — EL RECORRIDO ════════ -->
+  <section class="agents" id="agentes">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> El equipo que no duerme</p>
+        <h2 class="section-head__title reveal-up">Un agente para cada<br/><span class="grad">punto crítico de tu negocio</span></h2>
+        <p class="section-head__sub reveal-up">Seguí el recorrido. Cada nodo es un agente operando ahora mismo en negocios reales.</p>
+      </header>
+    </div>
+
+    <div class="agents__journey" id="agentsJourney">
+      <!-- Path SVG desktop: se dibuja con el scroll -->
+      <!-- preserveAspectRatio="none": coordenadas mapean 1:1 a porcentajes del contenedor,
+           así el trazo pasa exacto por los nodos en cualquier ancho de pantalla -->
+      <svg class="agents__path-svg" viewBox="0 0 1000 4400" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="path-grad" x1="0" y1="0" x2="0" y2="4400" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2B4BFF"/><stop offset="0.5" stop-color="#3D8BFD"/><stop offset="1" stop-color="#4CC3F7"/>
+          </linearGradient>
+          <radialGradient id="spark-radial">
+            <stop offset="0" stop-color="#bfe9ff" stop-opacity="0.95"/>
+            <stop offset="0.35" stop-color="#4cc3f7" stop-opacity="0.55"/>
+            <stop offset="1" stop-color="#2b4bff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="agents__path agents__path--ghost" vector-effect="non-scaling-stroke"
+              d="M500 0 C 600 90, 690 150, 610 250 C 530 350, 300 230, 220 327 C 130 440, 350 460, 510 520 C 700 590, 860 700, 780 859 C 700 1000, 430 950, 330 1060 C 240 1160, 140 1270, 220 1391 C 300 1510, 530 1470, 620 1580 C 720 1700, 860 1780, 780 1923 C 700 2060, 450 2010, 360 2130 C 270 2250, 130 2330, 220 2455 C 310 2580, 560 2540, 650 2660 C 760 2800, 860 2840, 780 2987 C 700 3130, 430 3080, 330 3200 C 230 3320, 140 3400, 220 3519 C 300 3640, 540 3600, 630 3720 C 730 3850, 860 3910, 780 4051 C 700 4190, 560 4250, 520 4320 C 490 4380, 500 4390, 500 4400"/>
+        <path class="agents__path agents__path--draw" id="agentsPathDraw" vector-effect="non-scaling-stroke"
+              d="M500 0 C 600 90, 690 150, 610 250 C 530 350, 300 230, 220 327 C 130 440, 350 460, 510 520 C 700 590, 860 700, 780 859 C 700 1000, 430 950, 330 1060 C 240 1160, 140 1270, 220 1391 C 300 1510, 530 1470, 620 1580 C 720 1700, 860 1780, 780 1923 C 700 2060, 450 2010, 360 2130 C 270 2250, 130 2330, 220 2455 C 310 2580, 560 2540, 650 2660 C 760 2800, 860 2840, 780 2987 C 700 3130, 430 3080, 330 3200 C 230 3320, 140 3400, 220 3519 C 300 3640, 540 3600, 630 3720 C 730 3850, 860 3910, 780 4051 C 700 4190, 560 4250, 520 4320 C 490 4380, 500 4390, 500 4400"/>
+        <!-- Chispa que avanza con el trazo -->
+        <g class="agents__spark" id="agentsSpark" opacity="0">
+          <circle class="agents__spark-halo" r="22" fill="url(#spark-radial)"/>
+          <circle class="agents__spark-core" r="5.5" fill="#dff4ff"/>
+        </g>
+      </svg>
+
+      <!-- Agente 1: Gestor de Reservas -->
+      <article class="agent agent--left">
+        <div class="agent__node" aria-hidden="true"><span>01</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
+          </div>
+          <h3>Agente Gestor de Reservas</h3>
+          <p class="agent__tag">Canchas · Restaurantes · Consultorios</p>
+          <p>Toma, confirma, reprograma y cancela reservas de forma totalmente automática. Y después de cada visita hace el seguimiento: detecta quejas para que las resuelvas a tiempo y captura las buenas opiniones para convertirlas en reseñas.</p>
+          <ul class="agent__feats">
+            <li>Reservas confirmadas en segundos, 24/7</li>
+            <li>Recordatorios que eliminan ausencias</li>
+            <li>Seguimiento post-visita: quejas detectadas, elogios convertidos en reseñas</li>
+            <li>Agenda siempre sincronizada, sin sobreturnos</li>
+          </ul>
+          <a class="agent__more" href="agentes/gestor-reservas.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Reserva</p>
+            <div class="mk-bubble mk-in">Hola, quería reservar para el sábado 21 horas, somos 4 🙌</div>
+            <div class="mk-bubble mk-out">¡Genial! Ya quedó tu reserva para el sábado. Los esperamos ✨</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 2: Atención al Cliente -->
+      <article class="agent agent--right">
+        <div class="agent__node" aria-hidden="true"><span>02</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+          </div>
+          <h3>Agente de Atención al Cliente</h3>
+          <p class="agent__tag">Tiendas, servicios y marcas</p>
+          <p>Responde cada consulta de WhatsApp e Instagram al instante, con el tono de tu marca: precios, stock, envíos, horarios. Y si un cliente preguntó y no compró, lo retoma solo — ninguna venta se queda en "visto".</p>
+          <ul class="agent__feats">
+            <li>Respuesta instantánea 24/7</li>
+            <li>WhatsApp + Instagram unificados</li>
+            <li>Seguimiento automático: recupera conversaciones que se enfriaron</li>
+            <li>Entrenado con el conocimiento de tu negocio</li>
+          </ul>
+          <a class="agent__more" href="agentes/atencion-cliente.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">WhatsApp</p>
+            <div class="mk-bubble mk-in">¿Hacen envíos? ¿Cuánto tarda?</div>
+            <div class="mk-bubble mk-out">Sí, te llega en 24-48hs 🚚 ¿Te paso el catálogo para elegir?</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 3: Gestión Integral Gastronómica -->
+      <article class="agent agent--left">
+        <div class="agent__node" aria-hidden="true"><span>03</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+          </div>
+          <h3>Agente de Gestión Integral</h3>
+          <p class="agent__tag">Restaurantes &amp; tiendas de comida · Fudo</p>
+          <p>Opera tu negocio gastronómico completo sobre Fudo: le sacás una foto a la factura y se carga sola; genera órdenes de compra y de producción, actualiza precios, toma pedidos y avisa a los deliverys. Absolutamente todo, automático.</p>
+          <ul class="agent__feats">
+            <li>Carga de facturas por imagen</li>
+            <li>Órdenes de compra y producción automáticas</li>
+            <li>Actualización de precios y stock</li>
+            <li>Toma de pedidos + notificación a deliverys</li>
+          </ul>
+          <a class="agent__more" href="agentes/gestion-integral.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Gestión · Fudo</p>
+            <div class="mk-bubble mk-in">Hola, te mando esta factura de bebidas 🧾</div>
+            <div class="mk-bubble mk-out">¡Genial! Ya actualicé el stock y los costos en Fudo. Además generé las órdenes de producción para cocina 👨‍🍳</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 4: Setter Comercial -->
+      <article class="agent agent--right">
+        <div class="agent__node" aria-hidden="true"><span>04</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+          <h3>Agente Setter Comercial</h3>
+          <p class="agent__tag">Calificación &amp; agendamiento</p>
+          <p>Conversa con cada lead, responde objeciones, filtra a los que no califican y agenda reuniones solo con quienes están listos para comprar. Tu calendario se llena de oportunidades reales.</p>
+          <ul class="agent__feats">
+            <li>Calificación automática de leads</li>
+            <li>Seguimiento persistente sin parecer spam</li>
+            <li>Integración directa con tu agenda</li>
+          </ul>
+          <a class="agent__more" href="agentes/setter-comercial.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Reunión agendada</p>
+            <div class="mk-row"><span>Lead</span><b>Calificado ✓</b></div>
+            <div class="mk-cal">Mié 15 · 16:00</div>
+            <span class="mk-tag">Sumado a tu calendario</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 5: Secretario Ejecutivo -->
+      <article class="agent agent--left">
+        <div class="agent__node" aria-hidden="true"><span>05</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3>Agente Secretario Ejecutivo</h3>
+          <p class="agent__tag">Agenda &amp; coordinación</p>
+          <p>Organiza reuniones, eventos y llamadas; resuelve conflictos de horario, envía recordatorios y reagenda solo. Como un asistente personal, pero sin sueldo ni vacaciones.</p>
+          <ul class="agent__feats">
+            <li>Gestión completa de calendario</li>
+            <li>Recordatorios que reducen ausencias</li>
+            <li>Coordinación entre múltiples personas</li>
+          </ul>
+          <a class="agent__more" href="agentes/secretario-ejecutivo.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Agenda de hoy</p>
+            <div class="mk-line">09:00 · Llamada proveedor</div>
+            <div class="mk-line">14:30 · Reunión equipo</div>
+            <span class="mk-tag">Conflicto de horario resuelto</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 6: Prospector -->
+      <article class="agent agent--right">
+        <div class="agent__node" aria-hidden="true"><span>06</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+          </div>
+          <h3>Agente Prospector</h3>
+          <p class="agent__tag">Generación de clientes</p>
+          <p>Encuentra potenciales clientes para tu negocio, investiga su contexto y redacta mensajes personalizados que abren conversaciones comerciales. Prospección en frío que no se siente fría.</p>
+          <ul class="agent__feats">
+            <li>Búsqueda y extracción de prospectos</li>
+            <li>Mensajes únicos por cada contacto</li>
+            <li>Seguimiento automático hasta obtener respuesta</li>
+            <li>Pipeline comercial siempre lleno</li>
+          </ul>
+          <a class="agent__more" href="agentes/prospector.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Nuevo prospecto</p>
+            <div class="mk-row"><span>Match</span><b>92%</b></div>
+            <div class="mk-bubble mk-out">Mensaje personalizado enviado</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 7: E-Commerce Manager -->
+      <article class="agent agent--left">
+        <div class="agent__node" aria-hidden="true"><span>07</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12L5 3H2"/><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/></svg>
+          </div>
+          <h3>Agente E-Commerce Manager</h3>
+          <p class="agent__tag">Tu tienda, desde WhatsApp</p>
+          <p>Gestioná tu e-commerce completo desde un chat: productos, márgenes, ganancias, campañas de Meta Ads y reportes. Le preguntás como a un gerente, te responde con datos.</p>
+          <ul class="agent__feats">
+            <li>Control total desde WhatsApp</li>
+            <li>Métricas y reportes al instante</li>
+            <li>Gestión de campañas publicitarias</li>
+            <li>Seguimiento post-venta que genera recompras</li>
+          </ul>
+          <a class="agent__more" href="agentes/ecommerce-manager.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Seguimiento post-venta</p>
+            <div class="mk-bubble mk-out">Hola Lucía 👋 ¿Cómo te fue con las zapatillas? Tenemos 15% en tu próxima compra 💙</div>
+            <div class="mk-bubble mk-in">¡Buenísimas! Quiero unas para mi hermana 🙌</div>
+            <span class="mk-tag mk-up">Venta cerrada · +$228.000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agente 8: Estudio Creativo -->
+      <article class="agent agent--right">
+        <div class="agent__node" aria-hidden="true"><span>08</span></div>
+        <div class="agent__card">
+          <div class="agent__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5l5 2.5-5 2.5v-5z" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Agente Estudio Creativo</h3>
+          <p class="agent__tag">Contenido que vende, en piloto automático</p>
+          <p>Analiza tendencias, escribe guiones alineados a los canales más exitosos de tu nicho y produce videos ultra realistas con la imagen de tu marca o tu persona. Contenido constante sin grabar nada.</p>
+          <ul class="agent__feats">
+            <li>Guiones basados en tendencias reales</li>
+            <li>Videos ultra realistas con tu imagen</li>
+            <li>3× velocidad de producción</li>
+          </ul>
+          <a class="agent__more" href="agentes/estudio-creativo.html">Ver el agente completo <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="agent__aside" aria-hidden="true">
+          <div class="agent__glow"></div>
+          <div class="agent__mock">
+            <p class="mk-head">Render listo</p>
+            <div class="mk-video"><span>▶</span></div>
+            <span class="mk-tag">3 videos esta semana</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="container agents__cta reveal-up">
+      <p>¿Tu negocio necesita algo que no está acá?</p>
+      <a class="btn btn--ghost btn--magnetic" href="https://wa.me/5493412685888?text=Hola%2C%20quiero%20un%20agente%20a%20medida%20para%20mi%20negocio" target="_blank" rel="noopener">Construimos agentes a medida →</a>
+    </div>
+  </section>
+
+  <!-- ════════ QUIZ: ¿QUÉ AGENTE NECESITÁS? ════════ -->
+  <section class="quiz" id="quiz">
+    <div class="container container--narrow">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> 60 segundos</p>
+        <h2 class="section-head__title reveal-up">¿Qué agente necesita<br/><span class="grad">tu negocio?</span></h2>
+        <p class="section-head__sub reveal-up">Tres preguntas y te decimos por dónde empezar. Sin mail, sin registro.</p>
+      </header>
+
+      <!-- Lo maneja extras.js; sin JS la sección se oculta (html.no-js) -->
+      <div class="quiz__card reveal-up" id="quizCard">
+        <div id="quizStep">
+          <p class="quiz__progress" id="quizProgress">Pregunta 1 de 3</p>
+          <h3 class="quiz__q" id="quizQuestion"></h3>
+          <div class="quiz__opts" id="quizOpts" role="group" aria-label="Opciones"></div>
+        </div>
+        <div class="quiz__result" id="quizResult" hidden aria-live="polite">
+          <p class="quiz__result-kicker">Tu agente recomendado</p>
+          <p class="quiz__result-num" id="quizResNum"></p>
+          <p class="quiz__result-name" id="quizResName"></p>
+          <p class="quiz__result-desc" id="quizResDesc"></p>
+          <div class="quiz__result-actions">
+            <a class="btn btn--primary" id="quizResLink" href="#">Conocer este agente</a>
+            <a class="btn btn--ghost" id="quizResWa" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+          <button class="quiz__restart" id="quizRestart" type="button">↺ Volver a empezar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ INTEGRACIONES ════════ -->
+  <section class="integr" id="integraciones">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Se conecta con lo que ya usás</p>
+        <h2 class="section-head__title reveal-up">Tus herramientas,<br/><span class="grad">hablando entre sí</span></h2>
+        <p class="section-head__sub reveal-up">Los agentes operan sobre las plataformas reales de tu negocio. Nada de migrar todo a un sistema nuevo: integramos sobre lo que ya tenés.</p>
+      </header>
+
+      <ul class="integr__grid reveal-up">
+        <li class="integr__item">
+          <span class="integr__ic" style="--c:#25d366" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm4.6 12.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.2-.9-.3-1.5-.6-2.7-1.2-4.5-3.9-4.6-4.1-.1-.1-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.8 1.9c.1.1.1.3 0 .5l-.5.6c-.1.2-.4.3-.1.7a6.7 6.7 0 0 0 3.4 3c.2.1.4.1.5-.1.1-.2.6-.7.8-1 .2-.2.4-.2.6-.1.2.1 1.4.7 1.7.8.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg></span>
+          <span class="integr__name">WhatsApp</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic" style="--c:#e1306c" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+          <span class="integr__name">Instagram</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic" style="--c:#4285f4" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M16 2.5v4M8 2.5v4M3 9.5h18"/><path d="M12 13.5h.01M12 17h.01" stroke-width="2.4"/></svg></span>
+          <span class="integr__name">Google Calendar</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic" style="--c:#ea4335" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
+          <span class="integr__name">Gmail</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic integr__ic--word" style="--c:#ff7a59" aria-hidden="true">Fudo</span>
+          <span class="integr__name">Gestión gastronómica</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic integr__ic--word" style="--c:#ea4b71" aria-hidden="true">n8n</span>
+          <span class="integr__name">Orquestación</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic integr__ic--word" style="--c:#0866ff" aria-hidden="true">Meta</span>
+          <span class="integr__name">Ads &amp; Messenger</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic" style="--c:#229ed9" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.3 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L6.7 13 1.9 11.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.4 1.4z"/></svg></span>
+          <span class="integr__name">Telegram</span>
+        </li>
+        <li class="integr__item">
+          <span class="integr__ic integr__ic--word" style="--c:#4cc3f7" aria-hidden="true">API</span>
+          <span class="integr__name">Tu sistema a medida</span>
+        </li>
+      </ul>
+
+      <p class="integr__more reveal-up">¿Usás otra herramienta? <a href="#contacto">Si tiene API o webhook, la integramos →</a></p>
+    </div>
+  </section>
+
+  <!-- ════════ DEMO EN VIDEO ════════ -->
+  <section class="demo" id="demo">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Velo con tus ojos</p>
+        <h2 class="section-head__title reveal-up">Un agente, <span class="grad">respondiendo en vivo</span></h2>
+        <p class="section-head__sub reveal-up">Así conversa un agente real con un cliente: natural, al instante, con el tono de la marca.</p>
+      </header>
+
+      <!-- ► REEMPLAZAR: pegá el embed (YouTube/Vimeo) o un <video src> dentro de .demo__frame.
+           Para YouTube: <iframe class="demo__media" src="https://www.youtube.com/embed/ID" title="Demo Integra IA" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+           Para archivo: <video class="demo__media" src="assets/demo.mp4" poster="assets/og-cover.png" controls preload="none"></video> -->
+      <figure class="demo__frame reveal-up">
+        <div class="demo__placeholder" role="img" aria-label="Demo en video — próximamente">
+          <span class="demo__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <p class="demo__soon">Video demo · próximamente</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ════════ CASOS DE ÉXITO ════════ -->
+  <section class="cases" id="casos">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Resultados, no promesas</p>
+        <h2 class="section-head__title reveal-up">Negocios reales.<br/><span class="grad">Números reales.</span></h2>
+      </header>
+    </div>
+
+    <div class="cases__stack container">
+
+      <!-- AMADEUS ROCK -->
+      <article class="case">
+        <div class="case__inner">
+          <div class="case__info">
+            <p class="case__industry">Retail · Música · Rosario, Argentina</p>
+            <h3 class="case__name">Amadeus Rock</h3>
+            <p class="case__story">
+              30 años vendiendo vinilos, CDs y merchandising de rock. El WhatsApp explotaba de consultas
+              y cada respuesta manual era tiempo que el local no tenía.
+              Implementamos un <a href="agentes/atencion-cliente.html">agente que atiende WhatsApp e Instagram</a> solo.
+            </p>
+            <div class="case__before-after">
+              <div class="ba ba--before"><span>Antes</span>Horas respondiendo lo mismo, clientes esperando, ventas que se enfriaban.</div>
+              <div class="ba ba--after"><span>Ahora</span>Respuesta en segundos, a cualquier hora, todos los días del año.</div>
+            </div>
+            <blockquote class="case__quote">
+              <p>Antes vivía colgado al teléfono contestando lo mismo mil veces. Ahora el local atiende solo y yo me puedo ocupar de la música.</p>
+              <cite>— Dueño de Amadeus Rock</cite>
+            </blockquote>
+          </div>
+          <div class="case__metrics">
+            <div class="metric">
+              <span class="metric__num"><span data-count="80" data-prefix="−" data-suffix="%">0</span></span>
+              <span class="metric__label">respuestas manuales</span>
+              <div class="metric__bar"><i style="--w:80%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num"><span data-count="10" data-suffix=" hs">0</span></span>
+              <span class="metric__label">recuperadas por semana</span>
+              <div class="metric__bar"><i style="--w:65%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num">24/7</span>
+              <span class="metric__label">atención ininterrumpida</span>
+              <div class="metric__bar"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- LUXIMODE -->
+      <article class="case">
+        <div class="case__inner">
+          <div class="case__info">
+            <p class="case__industry">E-Commerce · Iluminación &amp; diseño · Argentina → Italia</p>
+            <h3 class="case__name">Luximode</h3>
+            <p class="case__story">
+              Vender en Italia desde Argentina exige velocidad. Implementamos el <a href="agentes/ecommerce-manager.html">Agente E-Commerce</a>
+              (gestión completa desde WhatsApp) y el <a href="agentes/estudio-creativo.html">Agente Estudio Creativo</a> (producción de contenido automática).
+            </p>
+            <div class="case__before-after">
+              <div class="ba ba--before"><span>Antes</span>Datos dispersos, decisiones lentas, contenido a cuentagotas.</div>
+              <div class="ba ba--after"><span>Ahora</span>Todo el negocio en un chat. Contenido al triple de velocidad.</div>
+            </div>
+            <blockquote class="case__quote">
+              <p>Le pregunto al agente cuánto vendimos en la semana y me contesta antes de que termine el café. Manejo la tienda desde el celular, esté donde esté.</p>
+              <cite>— Fundador de Luximode</cite>
+            </blockquote>
+          </div>
+          <div class="case__metrics">
+            <div class="metric">
+              <span class="metric__num"><span data-count="10" data-prefix="+" data-suffix=" hs">0</span></span>
+              <span class="metric__label">ahorradas por semana</span>
+              <div class="metric__bar"><i style="--w:60%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num"><span data-count="3" data-suffix="×">0</span></span>
+              <span class="metric__label">velocidad de producción de contenido</span>
+              <div class="metric__bar"><i style="--w:90%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num">1 chat</span>
+              <span class="metric__label">para gestionar todo el e-commerce</span>
+              <div class="metric__bar"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ESCULPE TU DESARROLLO -->
+      <article class="case">
+        <div class="case__inner">
+          <div class="case__info">
+            <p class="case__industry">Desarrollo personal · +1.4M seguidores</p>
+            <h3 class="case__name">Esculpe tu Desarrollo</h3>
+            <p class="case__story">
+              Con 400 mil seguidores en Instagram y 1 millón en TikTok, el volumen de mensajes era inmanejable.
+              Implementamos el <a href="agentes/setter-comercial.html">Agente Setter</a> y el <a href="agentes/secretario-ejecutivo.html">Agente Secretario</a>: el primer contacto, la calificación
+              y el agendamiento ahora son 100% automáticos.
+            </p>
+            <div class="case__before-after">
+              <div class="ba ba--before"><span>Antes</span>Leads valiosos perdidos entre miles de mensajes.</div>
+              <div class="ba ba--after"><span>Ahora</span>Solo llegan a la llamada los que están listos para comprar.</div>
+            </div>
+            <blockquote class="case__quote">
+              <p>Con más de un millón de seguidores era imposible contestar todo. Ahora a la llamada llegan solo los que de verdad quieren comprar.</p>
+              <cite>— Equipo de Esculpe tu Desarrollo</cite>
+            </blockquote>
+          </div>
+          <div class="case__metrics">
+            <div class="metric">
+              <span class="metric__num"><span data-count="35" data-prefix="+" data-suffix="%">0</span></span>
+              <span class="metric__label">llamadas calificadas</span>
+              <div class="metric__bar"><i style="--w:70%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num"><span data-count="20" data-prefix="+" data-suffix="%">0</span></span>
+              <span class="metric__label">conversión a venta</span>
+              <div class="metric__bar"><i style="--w:55%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num">100%</span>
+              <span class="metric__label">del primer contacto automatizado</span>
+              <div class="metric__bar"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- MALANDRA -->
+      <article class="case">
+        <div class="case__inner">
+          <div class="case__info">
+            <p class="case__industry">Gastronomía · Restaurante</p>
+            <h3 class="case__name">Malandra</h3>
+            <p class="case__story">
+              No un agente: un sistema operativo completo para el restaurante. <a href="agentes/gestor-reservas.html">Reservas y seguimiento de
+              clientes</a>, gestión de quejas, solicitud de reseñas, <a href="agentes/gestion-integral.html">integración con Fudo</a>, facturas, órdenes
+              de compra, órdenes de producción y stock — todo orquestado por IA.
+            </p>
+            <ul class="case__chips">
+              <li>Reservas automáticas</li><li>Gestión de quejas</li><li>Reseñas positivas</li>
+              <li>Integración Fudo</li><li>Carga de facturas</li><li>Órdenes de compra</li>
+              <li>Órdenes de producción</li><li>Control de stock</li>
+            </ul>
+            <blockquote class="case__quote">
+              <p>Es como tener un encargado que no se olvida de nada: ni de una reserva, ni de una factura, ni de pedirle la reseña al cliente que se fue contento.</p>
+              <cite>— Dueño de Malandra</cite>
+            </blockquote>
+          </div>
+          <div class="case__metrics">
+            <div class="metric">
+              <span class="metric__num"><span data-count="9">0</span></span>
+              <span class="metric__label">procesos críticos automatizados</span>
+              <div class="metric__bar"><i style="--w:90%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num">1 sistema</span>
+              <span class="metric__label">de la reserva al inventario</span>
+              <div class="metric__bar"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- LIGA HANDBALL -->
+      <article class="case">
+        <div class="case__inner">
+          <div class="case__info">
+            <p class="case__industry">Deporte · Gestión federativa</p>
+            <h3 class="case__name">Liga de Handball</h3>
+            <p class="case__story">
+              Validar identidad y aptos físicos de cientos de jugadores era un cuello de botella
+              administrativo. Construimos una solución que verifica documentación automáticamente:
+              lo que tomaba días, ahora toma segundos.
+            </p>
+            <div class="case__before-after">
+              <div class="ba ba--before"><span>Antes</span>Revisión manual, documento por documento.</div>
+              <div class="ba ba--after"><span>Ahora</span>Validación de identidad y aptos físicos automática.</div>
+            </div>
+            <blockquote class="case__quote">
+              <p>Pasamos de días revisando documento por documento a validar todo en segundos. No volvemos atrás ni locos.</p>
+              <cite>— Coordinación de la Liga</cite>
+            </blockquote>
+          </div>
+          <div class="case__metrics">
+            <div class="metric">
+              <span class="metric__num">Días → seg</span>
+              <span class="metric__label">tiempo de validación</span>
+              <div class="metric__bar"><i style="--w:95%"></i></div>
+            </div>
+            <div class="metric">
+              <span class="metric__num">0</span>
+              <span class="metric__label">errores de carga manual</span>
+              <div class="metric__bar"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="container cases__cta reveal-up">
+      <a class="btn btn--primary btn--magnetic" href="https://wa.me/5493412685888?text=Vi%20los%20casos%20de%20%C3%A9xito%20y%20quiero%20resultados%20as%C3%AD%20en%20mi%20negocio" target="_blank" rel="noopener">Quiero resultados así en mi negocio</a>
+    </div>
+  </section>
+
+  <!-- ════════ MÉTODO ════════ -->
+  <section class="method" id="metodo">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Cómo trabajamos</p>
+        <h2 class="section-head__title reveal-up">De la primera llamada<br/><span class="grad">a tu negocio automatizado</span></h2>
+        <p class="section-head__sub reveal-up">Nuestra metodología empieza por lo que más importa: cómo interactúan tus clientes con tu negocio. Detectamos fricciones, las eliminamos, y medimos el impacto.</p>
+      </header>
+
+      <ol class="method__steps">
+        <li class="step reveal-up">
+          <span class="step__num">01</span>
+          <h3>Diagnóstico</h3>
+          <p>Reunión inicial. Analizamos tus procesos, detectamos las fricciones que te cuestan ventas y tiempo, y definimos dónde la IA genera más impacto.</p>
+        </li>
+        <li class="step reveal-up">
+          <span class="step__num">02</span>
+          <h3>Diseño</h3>
+          <p>Diseñamos la solución a medida: qué agentes, qué integraciones, qué flujos. Nada genérico — tu negocio no es genérico.</p>
+        </li>
+        <li class="step reveal-up">
+          <span class="step__num">03</span>
+          <h3>Desarrollo</h3>
+          <p>Construimos e integramos los agentes con tus herramientas reales: WhatsApp, agenda, sistema de gestión, e-commerce.</p>
+        </li>
+        <li class="step reveal-up">
+          <span class="step__num">04</span>
+          <h3>Pruebas</h3>
+          <p>Testeamos con casos reales y optimizamos hasta que el agente responde exactamente como lo haría tu mejor empleado.</p>
+        </li>
+        <li class="step reveal-up">
+          <span class="step__num">05</span>
+          <h3>Lanzamiento + acompañamiento</h3>
+          <p>Puesta en marcha y mejora continua. El agente aprende, nosotros lo evolucionamos, tu negocio escala.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ════════ NOSOTROS ════════ -->
+  <section class="about" id="nosotros">
+    <div class="container about__grid">
+      <div class="about__text">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Sobre Integra IA</p>
+        <h2 class="section-head__title reveal-up">Nacimos de una obsesión:<br/><span class="grad">optimizar negocios reales</span></h2>
+        <div class="about__story reveal-up">
+          <p>Antes de la IA, ya construíamos sistemas que hacían más eficientes a las empresas. Años de desarrollo de software nos enseñaron algo que ningún curso enseña: <strong>cómo funciona un negocio por dentro</strong>.</p>
+          <p>Cuando la inteligencia artificial maduró, no empezamos de cero — la integramos sobre esa base. Proyecto tras proyecto, agente tras agente, el equipo creció y la especialización se profundizó.</p>
+          <p>Hoy Integra IA es eso: <strong>experiencia en procesos + ingeniería de IA</strong>, aplicadas a que tu negocio trabaje mejor, más rápido y de forma más inteligente.</p>
+        </div>
+      </div>
+      <div class="about__values">
+        <div class="value reveal-up">
+          <h3>Resultados medibles</h3>
+          <p>No vendemos tecnología. Vendemos horas recuperadas, ventas que no se pierden y procesos que escalan.</p>
+        </div>
+        <div class="value reveal-up">
+          <h3>Soluciones a medida</h3>
+          <p>Cero plantillas. Cada agente se diseña sobre los procesos reales de tu negocio.</p>
+        </div>
+        <div class="value reveal-up">
+          <h3>Acompañamiento continuo</h3>
+          <p>No entregamos y desaparecemos. Optimizamos tus agentes mientras tu negocio evoluciona.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FAQ ════════ -->
+  <section class="faq">
+    <div class="container container--narrow">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Preguntas frecuentes</p>
+        <h2 class="section-head__title reveal-up">Lo que todos preguntan<br/><span class="grad">antes de empezar</span></h2>
+      </header>
+
+      <div class="faq__list">
+        <details class="faq__item reveal-up">
+          <summary>¿Necesito saber de tecnología para usar un agente?</summary>
+          <p>No. Nosotros diseñamos, construimos e integramos todo. Vos lo usás como usás WhatsApp: escribiendo. Si sabés chatear, sabés operar tu agente.</p>
+        </details>
+        <details class="faq__item reveal-up">
+          <summary>¿El agente va a sonar como un robot?</summary>
+          <p>No. Cada agente se entrena con el tono de tu marca y el contexto de tu negocio. Tus clientes reciben respuestas naturales, precisas y al instante — muchos no notan la diferencia.</p>
+        </details>
+        <details class="faq__item reveal-up">
+          <summary>¿Cuánto tarda la implementación?</summary>
+          <p>Depende de la complejidad, pero la mayoría de los agentes están operando en semanas, no meses. En la llamada de diagnóstico te damos un plazo concreto.</p>
+        </details>
+        <details class="faq__item reveal-up">
+          <summary>¿Qué pasa si mi negocio necesita algo muy específico?</summary>
+          <p>Mejor. Nuestra especialidad son las soluciones a medida: desde validación de documentos para una liga deportiva hasta la gestión integral de un restaurante. Si el proceso existe, se puede automatizar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ COMPARADOR: SIN AUTOMATIZAR VS. CON INTEGRA IA ════════ -->
+  <section class="vs" id="comparativa">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> El costo de no hacerlo</p>
+        <h2 class="section-head__title reveal-up">Sin automatizar<br/><span class="grad">vs. con Integra IA</span></h2>
+        <p class="section-head__sub reveal-up">Todos los días que tu negocio opera a mano, esto es lo que está pasando.</p>
+      </header>
+
+      <div class="vs__grid reveal-up">
+        <div class="vs__col vs__col--sin">
+          <h3>Sin automatizar</h3>
+          <ul>
+            <li>Mensajes que llegan a las 3 AM y se responden al mediodía</li>
+            <li>Horas por semana contestando siempre lo mismo</li>
+            <li>Leads que preguntan, quedan en «visto» y compran en otro lado</li>
+            <li>Clientes contentos que nunca dejan su reseña</li>
+            <li>Reservas y turnos anotados a mano, con sobreturnos</li>
+          </ul>
+        </div>
+        <div class="vs__col vs__col--con">
+          <h3>Con Integra IA</h3>
+          <ul>
+            <li>Respuesta en segundos, 24 horas, todos los días</li>
+            <li>Horas recuperadas para hacer crecer el negocio</li>
+            <li>Seguimiento automático que recupera las ventas que se enfrían</li>
+            <li>Elogios convertidos en reseñas de Google</li>
+            <li>Agenda siempre sincronizada, sin intervención humana</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CALCULADORA DE AHORRO ════════ -->
+  <section class="roi" id="calculadora">
+    <div class="container container--narrow">
+      <header class="section-head">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Calculá tu ahorro</p>
+        <h2 class="section-head__title reveal-up">¿Cuánto te cuesta<br/><span class="grad">responder a mano?</span></h2>
+        <p class="section-head__sub reveal-up">Movés los valores y ves el tiempo y el dinero que un agente te devuelve cada mes. Estimación, no promesa.</p>
+      </header>
+
+      <form class="roi__card reveal-up" id="roiForm" novalidate>
+        <div class="roi__field">
+          <label for="roiMsgs">Mensajes / consultas por día</label>
+          <div class="roi__input-row">
+            <input type="range" id="roiMsgs" min="5" max="300" step="5" value="60" />
+            <output id="roiMsgsOut">60</output>
+          </div>
+        </div>
+        <div class="roi__field">
+          <label for="roiMin">Minutos promedio por respuesta</label>
+          <div class="roi__input-row">
+            <input type="range" id="roiMin" min="1" max="15" step="1" value="4" />
+            <output id="roiMinOut">4</output>
+          </div>
+        </div>
+        <div class="roi__field">
+          <label for="roiRate">Valor de tu hora (ARS, opcional)</label>
+          <div class="roi__input-row">
+            <input type="range" id="roiRate" min="0" max="20000" step="500" value="6000" />
+            <output id="roiRateOut">$6.000</output>
+          </div>
+        </div>
+
+        <div class="roi__results" aria-live="polite">
+          <div class="roi__res">
+            <span class="roi__num" id="roiHours">—</span>
+            <span class="roi__lbl">horas / mes recuperadas</span>
+          </div>
+          <div class="roi__res">
+            <span class="roi__num" id="roiMoney">—</span>
+            <span class="roi__lbl">en costo de tiempo / mes</span>
+          </div>
+        </div>
+        <p class="roi__disclaimer">Cálculo orientativo sobre 30 días. El ahorro real depende de tu operación — lo medimos en el diagnóstico.</p>
+        <a class="btn btn--primary btn--magnetic roi__cta" id="roiCta" href="https://wa.me/5493412685888" target="_blank" rel="noopener">
+          Quiero recuperar ese tiempo
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </form>
+    </div>
+  </section>
+
+  <!-- ════════ CONTACTO (FORMULARIO) ════════ -->
+  <section class="contact" id="contacto">
+    <div class="container contact__grid">
+      <div class="contact__intro">
+        <p class="section-head__eyebrow reveal-up"><span class="dot"></span> Hablemos</p>
+        <h2 class="section-head__title reveal-up">Contanos qué querés<br/><span class="grad">automatizar</span></h2>
+        <p class="reveal-up contact__lead">Dejanos tus datos y te escribimos para coordinar el diagnóstico gratuito. Sin compromiso.</p>
+        <ul class="contact__perks reveal-up">
+          <li>Respuesta en menos de 24 hs hábiles</li>
+          <li>Diagnóstico de 30 min sin costo</li>
+          <li>Te decimos qué se puede automatizar y qué no</li>
+        </ul>
+        <p class="contact__alt reveal-up">¿Preferís directo? <a href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener">Escribinos por WhatsApp →</a></p>
+      </div>
+
+      <form class="contact__form reveal-up" id="contactForm" novalidate>
+        <div class="field">
+          <label for="cfName">Nombre *</label>
+          <input type="text" id="cfName" name="name" autocomplete="name" required maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="cfBiz">Negocio / empresa *</label>
+          <input type="text" id="cfBiz" name="business" autocomplete="organization" required maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="cfEmail">Email *</label>
+          <input type="email" id="cfEmail" name="email" autocomplete="email" required maxlength="120" />
+        </div>
+        <div class="field">
+          <label for="cfPhone">WhatsApp (opcional)</label>
+          <input type="tel" id="cfPhone" name="phone" autocomplete="tel" inputmode="tel" maxlength="30" />
+        </div>
+        <div class="field">
+          <label for="cfMsg">¿Qué querés automatizar? *</label>
+          <textarea id="cfMsg" name="message" rows="4" required maxlength="800"></textarea>
+        </div>
+        <!-- honeypot anti-spam: oculto, los bots lo rellenan -->
+        <div class="field field--hp" aria-hidden="true">
+          <label for="cfCompany">No completar</label>
+          <input type="text" id="cfCompany" name="company_extra" tabindex="-1" autocomplete="off" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--xl" id="cfSubmit">Enviar consulta</button>
+        <p class="contact__status" id="cfStatus" role="status" aria-live="polite"></p>
+        <p class="contact__privacy">Al enviar aceptás nuestra <a href="privacidad.html">política de privacidad</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ════════ CTA FINAL ════════ -->
+  <section class="cta-final" id="cta-final">
+    <div class="cta-final__bg" aria-hidden="true">
+      <svg class="cta-final__loop" viewBox="0 0 120 60" fill="none">
+        <path d="M60 30 C 48 10, 18 10, 14 30 C 10 50, 40 52, 60 30 C 72 10, 102 10, 106 30 C 110 50, 80 52, 60 30 Z"
+              stroke="url(#cta-grad)" stroke-width="2" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="cta-grad" x1="0" y1="0" x2="120" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2B4BFF"/><stop offset="1" stop-color="#4CC3F7"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="container cta-final__content">
+      <h2 class="reveal-up">Tu competencia ya está<br/><span class="grad">automatizando.</span></h2>
+      <p class="reveal-up">Agendá una llamada de diagnóstico gratuita. En 30 minutos te decimos exactamente qué procesos de tu negocio puede tomar la IA — y cuánto tiempo y dinero recuperás.</p>
+      <p class="cta-final__spots reveal-up">Tomamos pocos proyectos por vez para implementar bien: quedan <b id="ctaSpots">pocos</b> cupos este mes.</p>
+      <div class="cta-final__actions reveal-up">
+        <a class="btn btn--primary btn--xl btn--magnetic" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20agendar%20una%20llamada%20de%20diagn%C3%B3stico" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+          Agendar llamada por WhatsApp
+        </a>
+        <span class="cta-final__note">Sin compromiso · Respuesta inmediata</span>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logo.webp" alt="Integra IA" width="56" height="56" loading="lazy"
+             onerror="this.onerror=null;this.src='assets/logo.svg'" />
+        <span>INTEGRA IA</span>
+        <p>Soluciones automatizadas con inteligencia artificial para negocios que quieren escalar.</p>
+      </div>
+      <nav class="footer__links" aria-label="Enlaces del sitio">
+        <a href="#agentes">Agentes</a>
+        <a href="#integraciones">Integraciones</a>
+        <a href="#casos">Casos de éxito</a>
+        <a href="#metodo">Método</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <nav class="footer__legal" aria-label="Legales">
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos.html">Términos</a>
+      </nav>
+      <div class="footer__social" aria-label="Redes sociales">
+        <a href="https://instagram.com/integraia" target="_blank" rel="noopener" aria-label="Integra IA en Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/5493412685888" target="_blank" rel="noopener" aria-label="Integra IA en WhatsApp">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+        </a>
+      </div>
+      <p class="footer__copy">© 2026 Integra IA — Rosario, Argentina. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ════════ BARRA CTA FIJA (solo mobile, la maneja extras.js) ════════ -->
+  <div class="mcta" id="mcta">
+    <p class="mcta__txt">Tu negocio, trabajando solo<small>Diagnóstico gratis de 30 min</small></p>
+    <a class="btn btn--small btn--primary" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Agendar diagnóstico</a>
+  </div>
+
+  <!-- ════════ WHATSAPP FLOTANTE ════════ -->
+  <a class="wa-float" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+    <span class="wa-float__pulse" aria-hidden="true"></span>
+  </a>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Integra IA",
+    "url": "https://integraia.com/",
+    "logo": "https://integraia.com/assets/logo.png",
+    "image": "https://integraia.com/assets/og-cover.png",
+    "description": "Agentes de inteligencia artificial y automatización para negocios. Atención al cliente, reservas, ventas y gestión 24/7.",
+    "slogan": "Tu negocio, trabajando solo.",
+    "telephone": "+54 9 341 268-5888",
+    "priceRange": "$$",
+    "areaServed": [{ "@type": "Country", "name": "Argentina" }, { "@type": "Place", "name": "Global" }],
+    "address": { "@type": "PostalAddress", "addressLocality": "Rosario", "addressRegion": "Santa Fe", "addressCountry": "AR" },
+    "sameAs": ["https://instagram.com/integraia"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "ventas",
+      "telephone": "+54 9 341 268-5888",
+      "availableLanguage": ["Spanish"]
+    },
+    "knowsAbout": ["Inteligencia Artificial", "Automatización de procesos", "Agentes de IA", "Atención al cliente automatizada", "n8n", "WhatsApp Business"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Necesito saber de tecnología para usar un agente de IA?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Integra IA diseña, construye e integra todo. El agente se usa como WhatsApp: escribiendo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El agente de IA suena como un robot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Cada agente se entrena con el tono de la marca y el contexto del negocio. Las respuestas son naturales, precisas e instantáneas." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tarda la implementación de un agente de IA?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La mayoría de los agentes están operando en semanas, no meses. En la llamada de diagnóstico se define un plazo concreto." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden automatizar procesos muy específicos?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. La especialidad de Integra IA son las soluciones a medida: desde validación de documentos hasta la gestión integral de un restaurante." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- GSAP self-hosted (antes CDN jsDelivr): una dependencia externa menos -->
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/extras.js" defer></script>
+
+  <!-- Robot 3D: three.js por módulos ES, solo se descarga al ejecutarse el import -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/robot3d.js"></script>
+</body>
+</html>
