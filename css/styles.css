@@ -11,6 +11,10 @@
   --blue: #2b4bff;
   --blue-soft: #3d8bfd;
   --cyan: #4cc3f7;
+  /* Acento "producto insignia". Se usa SOLO en el agente estrella (sección
+     .star del index, tarjeta 03 del recorrido y página del sistema Fudo):
+     marca jerarquía sin romper la paleta azul de marca. */
+  --star: #ffcb5c;
   --text: #f2f4ff;
   --muted: #9aa3c7;
   --grad: linear-gradient(92deg, #2b4bff 0%, #3d8bfd 50%, #4cc3f7 100%);
@@ -439,10 +443,7 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
 }
 
 /* ═══════════ AGENTE ESTRELLA (banda destacada, pre-recorrido) ═══════════ */
-/* El acento dorado (--star) es EXCLUSIVO de esta sección y de la página del
-   sistema Fudo: marca "producto insignia" sin romper la paleta azul de marca. */
 .star {
-  --star: #ffcb5c;
   position: relative;
   padding: clamp(60px, 9vw, 110px) 0;
   background: var(--bg-2);
@@ -532,6 +533,23 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   .star__mods { grid-template-columns: 1fr; }
   .star__visual { margin-top: 6px; }
 }
+
+/* Marca de "agente estrella" en la tarjeta 03 del recorrido: la ata
+   visualmente a la sección .star de arriba (mismo producto).
+   El color lo defiende la exclusión en `.agent__card > p:not(...)` más abajo. */
+.agent__card .agent__star {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font-family: var(--font-head);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--star);
+}
+.agent__card .agent__star svg { width: 13px; height: 13px; }
 
 /* ═══════════ AGENTES — RECORRIDO ═══════════ */
 .agents { padding: clamp(70px, 10vw, 120px) 0 40px; position: relative; overflow: hidden; }
@@ -667,7 +685,9 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   color: var(--cyan);
   margin-bottom: 16px;
 }
-.agent__card > p:not(.agent__tag) { color: var(--muted); font-size: 0.97rem; margin-bottom: 18px; }
+/* Cuerpo de la tarjeta. .agent__tag y .agent__star son etiquetas, no texto
+   corrido: tienen su propio color y quedan fuera. */
+.agent__card > p:not(.agent__tag):not(.agent__star) { color: var(--muted); font-size: 0.97rem; margin-bottom: 18px; }
 .agent__feats li {
   position: relative;
   padding-left: 24px;
@@ -1869,7 +1889,6 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
 }
 
 /* ═══════════ MÓDULOS DEL SISTEMA FUDO (agentes/sistema-fudo.html) ═══════════ */
-.apage--star { --star: #ffcb5c; }
 .apage--star .apage__num { color: var(--star); border-color: rgba(255, 203, 92, 0.4); }
 
 .mods { display: grid; gap: clamp(22px, 3.5vw, 34px); }

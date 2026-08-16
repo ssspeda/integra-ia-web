@@ -104,6 +104,10 @@ async function init() {
   robot.position.y -= box.min.y;
   scene.add(robot);
 
+  /* Altura de apoyo: base de la flotación. El modelo entero sube y baja
+     desde acá, logo infinito incluido. */
+  const FLOAT_BASE_Y = robot.position.y;
+
   const parentNode = robot.getObjectByName("ParentNode") || robot;
 
   /* Pivote genérico: crea un Group en un punto del modelo y le
@@ -175,6 +179,21 @@ async function init() {
   let waveStart = -1;
   const waveHold = params.has("wavehold"); // debug: brazo arriba congelado
 
+  /* ── Flotación idle ──
+     Dos senos de período distinto (4.2s y 6.7s, no múltiplos) para que el
+     ciclo no se sienta mecánico: nunca repite exactamente el mismo recorrido.
+     Amplitud en unidades del modelo, que mide 2.1 de alto → ~4% de su altura
+     de punta a punta, suficiente para leerse como flotar sin que parezca que
+     salta. El recorrido se desplaza entero HACIA ARRIBA (ver FLOAT_LIFT): si
+     bajara de su altura de apoyo, la base del logo se hundiría por debajo del
+     plano de la sombra y se vería cortada.
+     La sombra acompaña: se achica y se aclara cuando el robot sube. */
+  const FLOAT_AMP = 0.034;
+  const FLOAT_AMP_2 = 0.011;
+  const FLOAT_LIFT = FLOAT_AMP + FLOAT_AMP_2; // piso de la flotación = altura de apoyo
+  const FLOAT_TILT = 0.012; // rad, balanceo lateral apenas perceptible
+  const shadowBaseScale = shadow.scale.x;
+
   const ease = (x) => x * x * (3 - 2 * x); // smoothstep
 
   /* ── Loop: solo corre con el hero visible y la pestaña activa ── */
@@ -191,6 +210,19 @@ async function init() {
       targetYaw = Math.sin(t * 0.45) * MAX_YAW * 0.75;
       targetPitch = Math.sin(t * 0.3) * MAX_PITCH * 0.4;
     }
+
+    /* Flotación: el modelo entero sube y baja por encima de su altura de apoyo */
+    const wave =
+      Math.sin((t / 4.2) * Math.PI * 2) * FLOAT_AMP +
+      Math.sin((t / 6.7) * Math.PI * 2) * FLOAT_AMP_2;
+    const floatY = FLOAT_LIFT + wave; // 0 … 2·FLOAT_LIFT, nunca negativo
+    robot.position.y = FLOAT_BASE_Y + floatY;
+    robot.rotation.z = Math.sin((t / 5.5) * Math.PI * 2) * FLOAT_TILT;
+
+    // La sombra delata la altura: más chica y más tenue cuanto más alto está
+    const lift = floatY / (2 * FLOAT_LIFT); // 0 … 1
+    shadow.scale.setScalar(shadowBaseScale * (1 - lift * 0.14));
+    shadow.material.opacity = 1 - lift * 0.28;
 
     /* Cabeza mira al mouse; cuerpo quieto. Cara mira +X en local:
        yaw = rotación Y, pitch = rotación Z (negativo = mirar abajo) */
@@ -270,6 +302,15 @@ async function init() {
       if (reducedMotion) renderer.render(scene, camera);
     }, 150);
   });
+
+  /* Debug: ?floatdebug expone la altura del robot para poder medir la
+     flotación desde afuera (verificación automatizada). Sin el flag no se
+     escribe nada, así que no cuesta nada en producción. */
+  if (params.has("floatdebug")) {
+    Object.defineProperty(window, "__robotY", { get: () => robot.position.y });
+    // Desplazamiento respecto de la altura de apoyo: debe quedar siempre ≥ 0
+    Object.defineProperty(window, "__robotFloat", { get: () => robot.position.y - FLOAT_BASE_Y });
+  }
 
   container.classList.add("is-ready");
 }

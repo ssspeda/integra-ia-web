@@ -173,7 +173,7 @@
     const AGENTS = {
       "gestor-reservas": ["01", "Agente Gestor de Reservas", "Reservas confirmadas solas 24/7, recordatorios que eliminan ausencias y reseñas de Google después de cada visita."],
       "atencion-cliente": ["02", "Agente de Atención al Cliente", "Responde WhatsApp e Instagram al instante con el tono de tu marca, y retoma solo las ventas que se enfrían."],
-      "gestion-integral": ["03", "Agente de Gestión Integral", "Opera tu negocio gastronómico sobre Fudo: facturas por foto, stock, órdenes de compra y producción."],
+      "sistema-fudo": ["03", "Sistema Modular para Fudo", "Nuestro agente estrella: carga automática de facturas por foto, stock, órdenes de compra y producción, pedidos y deliverys."],
       "setter-comercial": ["04", "Agente Setter Comercial", "Conversa con cada lead, filtra a los curiosos y llena tu calendario solo con gente lista para comprar."],
       "secretario-ejecutivo": ["05", "Agente Secretario Ejecutivo", "Tu agenda coordinada sola: reuniones, recordatorios, conflictos de horario resueltos y reagendas."],
       "prospector": ["06", "Agente Prospector", "Encuentra clientes potenciales todos los días y les escribe mensajes personalizados que abren conversación."],
@@ -184,7 +184,7 @@
     /* Cada opción suma puntos a uno o más agentes */
     const QUESTIONS = [
       { q: "¿Qué tipo de negocio tenés?", opts: [
-        ["Gastronomía (restaurante, cafetería, delivery)", { "gestion-integral": 3, "gestor-reservas": 2 }],
+        ["Gastronomía (restaurante, cafetería, delivery)", { "sistema-fudo": 3, "gestor-reservas": 2 }],
         ["Atiendo con turnos o reservas (canchas, consultorio, estética)", { "gestor-reservas": 3, "secretario-ejecutivo": 1 }],
         ["Tienda o e-commerce", { "ecommerce-manager": 2, "atencion-cliente": 2 }],
         ["Servicios, B2B o marca personal", { "setter-comercial": 2, "prospector": 2, "estudio-creativo": 1 }],
@@ -192,12 +192,12 @@
       { q: "¿Dónde se te va más tiempo hoy?", opts: [
         ["Respondiendo siempre las mismas consultas", { "atencion-cliente": 3 }],
         ["Coordinando turnos, reservas o mi agenda", { "gestor-reservas": 2, "secretario-ejecutivo": 2 }],
-        ["Facturas, stock, pedidos y papeles", { "gestion-integral": 3 }],
+        ["Facturas, stock, pedidos y papeles", { "sistema-fudo": 3 }],
         ["Buscando clientes y siguiendo interesados", { "prospector": 2, "setter-comercial": 2 }],
       ]},
       { q: "¿Qué querés lograr primero?", opts: [
         ["Cerrar más ventas", { "setter-comercial": 2, "ecommerce-manager": 1, "atencion-cliente": 1 }],
-        ["Recuperar horas de mi semana", { "secretario-ejecutivo": 2, "gestion-integral": 1, "atencion-cliente": 1 }],
+        ["Recuperar horas de mi semana", { "secretario-ejecutivo": 2, "sistema-fudo": 1, "atencion-cliente": 1 }],
         ["Más reseñas y mejor reputación", { "gestor-reservas": 3 }],
         ["Contenido constante para mis redes", { "estudio-creativo": 3 }],
       ]},

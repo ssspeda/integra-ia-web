@@ -16,7 +16,7 @@ Copy-Item "$root\agentes" "$dist\agentes" -Recurse
 Copy-Item "$root\css" "$dist\css" -Recurse
 Copy-Item "$root\js" "$dist\js" -Recurse
 Copy-Item "$root\assets" "$dist\assets" -Recurse
-foreach ($f in "robots.txt", "sitemap.xml", "site.webmanifest", "_headers", ".htaccess") {
+foreach ($f in "robots.txt", "sitemap.xml", "site.webmanifest", "_headers", "_redirects", ".htaccess") {
   Copy-Item (Join-Path $root $f) $dist
 }
 
