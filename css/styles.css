@@ -438,6 +438,101 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   color: transparent;
 }
 
+/* ═══════════ AGENTE ESTRELLA (banda destacada, pre-recorrido) ═══════════ */
+/* El acento dorado (--star) es EXCLUSIVO de esta sección y de la página del
+   sistema Fudo: marca "producto insignia" sin romper la paleta azul de marca. */
+.star {
+  --star: #ffcb5c;
+  position: relative;
+  padding: clamp(60px, 9vw, 110px) 0;
+  background: var(--bg-2);
+  border-block: 1px solid var(--stroke);
+  overflow: hidden;
+}
+.star__aura {
+  position: absolute;
+  inset: -40% -10% auto;
+  height: 130%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 55% at 22% 45%, rgba(255, 203, 92, 0.13), transparent 68%),
+    radial-gradient(ellipse 55% 60% at 78% 60%, rgba(43, 75, 255, 0.28), transparent 70%);
+}
+.star__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(36px, 5vw, 70px);
+  align-items: center;
+}
+.star__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 18px 8px 14px;
+  margin-bottom: 22px;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--star);
+  background: rgba(255, 203, 92, 0.09);
+  border: 1px solid rgba(255, 203, 92, 0.34);
+}
+.star__badge svg {
+  width: 16px; height: 16px;
+  animation: star-twinkle 2.8s ease-in-out infinite;
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.86) rotate(-12deg); }
+}
+.star__title { font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 700; }
+.star__lead { color: var(--muted); margin-top: 20px; max-width: 54ch; }
+.star__lead strong { color: var(--text); }
+
+.star__mods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 30px;
+  max-width: 560px;
+}
+.star__mods li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-radius: 14px;
+  font-size: 0.93rem;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+}
+.star__mods i {
+  font-style: normal;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.74rem;
+  color: var(--star);
+}
+.star__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+
+.star__visual .agent__mock {
+  max-width: 360px;
+  margin-inline: auto;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 900px) {
+  /* En mobile el badge y el título van primero: el chat sin contexto no engancha.
+     El mock queda al final, como cierre visual antes del recorrido de agentes. */
+  .star__inner { grid-template-columns: 1fr; }
+  .star__mods { grid-template-columns: 1fr; }
+  .star__visual { margin-top: 6px; }
+}
+
 /* ═══════════ AGENTES — RECORRIDO ═══════════ */
 .agents { padding: clamp(70px, 10vw, 120px) 0 40px; position: relative; overflow: hidden; }
 /* Fondo: mesh de luz + grid técnica sutil detrás del recorrido */
@@ -1771,6 +1866,75 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   .apage__media { order: -1; max-width: 560px; }
   .apage__grid2 { grid-template-columns: 1fr; }
   .vs__grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════ MÓDULOS DEL SISTEMA FUDO (agentes/sistema-fudo.html) ═══════════ */
+.apage--star { --star: #ffcb5c; }
+.apage--star .apage__num { color: var(--star); border-color: rgba(255, 203, 92, 0.4); }
+
+.mods { display: grid; gap: clamp(22px, 3.5vw, 34px); }
+.mod {
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: 22px;
+  padding: clamp(24px, 3.5vw, 38px);
+  transition: border-color 0.35s;
+}
+.mod:hover { border-color: rgba(255, 203, 92, 0.3); }
+.mod__head { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.mod__num {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--star);
+  background: var(--bg-2);
+  border: 1px solid rgba(255, 203, 92, 0.35);
+}
+.mod__head h3 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); }
+.mod__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(24px, 4vw, 44px);
+  align-items: start;
+  margin-top: 18px;
+}
+.mod__desc { color: var(--muted); font-size: 0.97rem; }
+.mod__desc strong { color: var(--text); }
+.mod__feats { margin-top: 18px; display: grid; gap: 10px; }
+.mod__feats li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.mod__feats li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--star);
+  font-weight: 700;
+}
+
+/* Marco de video por módulo — mismo lenguaje visual que .demo__frame */
+.mod__video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+}
+.mod__video .demo__media { width: 100%; height: 100%; }
+.mod__video .demo__placeholder { gap: 14px; }
+.mod__video .demo__play { width: 64px; height: 64px; }
+.mod__video .demo__play svg { width: 26px; height: 26px; }
+
+@media (max-width: 860px) {
+  .mod__grid { grid-template-columns: 1fr; }
 }
 
 /* ═══════════ REDUCED MOTION ═══════════ */
