@@ -1,0 +1,68 @@
+# Integra IA — Sitio web
+
+Sitio estático de [Integra IA](https://integraia.com) (agencia de agentes de IA, Rosario, Argentina).
+
+Stack: HTML / CSS / JS vanilla. Sin framework, sin bundler de aplicación.
+GSAP + ScrollTrigger y las fuentes están self-hosted; three.js se carga por CDN (jsDelivr) para el robot 3D del hero.
+
+## Estructura
+
+```
+index.html            Home
+agentes/*.html        8 landings de producto (una por agente)
+privacidad.html       Política de privacidad (Ley 25.326)
+terminos.html         Términos y condiciones
+404.html              Página de error propia
+css/                  styles.css, fonts.css
+js/                   main.js, extras.js, robot3d.js, vendor/ (GSAP)
+assets/               Imágenes, fuentes woff2, robot.glb
+_headers              Cabeceras (CSP, cache) para Cloudflare Pages / Netlify
+.htaccess             Equivalente para hosting Apache
+build.ps1             Genera dist/
+dist/                 Salida de producción — ESTO es lo que se publica
+```
+
+## Build
+
+Requiere Node (usa `npx esbuild`).
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build.ps1
+```
+
+Copia el sitio a `dist/`, minifica el CSS y JS propios, y excluye los backups y
+archivos de diseño no referenciados. **Correr esto antes de cada commit** — `dist/`
+se versiona porque es el directorio que publica el hosting.
+
+## Desarrollo local
+
+El robot 3D hace `fetch` del `.glb`, así que no funciona sobre `file://`. Levantar un servidor:
+
+```
+npx http-server -p 8080
+```
+
+Parámetros de debug en la URL: `?paint=0.6` (congela el pintado del logo),
+`?blinkhold`, `?wavehold`, `?wave`.
+
+## Deploy
+
+**Cloudflare Pages** (recomendado — respeta `_headers` y tiene edge en Argentina):
+
+- Connect to Git → este repo
+- Build command: *(vacío)*
+- Output directory: `dist`
+
+**GitHub Pages** (alternativa; ignora `_headers`, así que se pierde la CSP y el cache-control):
+
+```
+git subtree push --prefix dist origin gh-pages
+```
+
+Luego Settings → Pages → branch `gh-pages` / `root`.
+
+## Notas
+
+- La access key de Web3Forms en `js/extras.js` es pública por diseño (viaja al cliente).
+- `assets/robot-original-backup.glb` es el modelo previo a la simplificación; queda
+  versionado como respaldo pero `build.ps1` lo excluye del deploy.

@@ -1,0 +1,14 @@
+{
+  "name": "Integra IA — Agentes de Inteligencia Artificial",
+  "short_name": "Integra IA",
+  "description": "Agentes de IA que atienden, venden y gestionan tu negocio 24/7.",
+  "lang": "es-AR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1f",
+  "theme_color": "#0a0a1f",
+  "icons": [
+    { "src": "assets/logo.png", "sizes": "625x625", "type": "image/png", "purpose": "any" }
+  ]
+}

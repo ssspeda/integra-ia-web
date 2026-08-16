@@ -1,0 +1,13 @@
+# Dependencias
+node_modules/
+
+# Config local del editor / Claude Code
+.claude/settings.local.json
+.vscode/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Nota: dist/ SÍ se versiona — es el directorio que publica Cloudflare Pages.

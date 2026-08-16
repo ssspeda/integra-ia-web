@@ -1,0 +1,14 @@
+# Normalizar finales de línea: LF en el repo, nativo en el working copy.
+* text=auto eol=lf
+
+# Binarios — que git no intente convertir nada.
+*.png binary
+*.webp binary
+*.jpg binary
+*.glb binary
+*.woff2 binary
+*.ico binary
+*.mp4 binary
+
+# build.ps1 corre en Windows: mantenerlo con CRLF.
+*.ps1 text eol=crlf
