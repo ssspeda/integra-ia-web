@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════
+   INTEGRA IA — Videos de YouTube (carga diferida)
+   Sin dependencias. Degrada bien si algo falta.
+
+   Uso en el HTML:
+     <div class="ytlite" data-yt="ID_DEL_VIDEO" data-title="Título accesible">
+       …placeholder «próximamente»…
+     </div>
+
+   Mientras data-yt esté vacío, el bloque queda tal cual (cartel
+   «próximamente»). Al pegar el ID, el placeholder se vuelve un botón
+   y recién al hacer clic se inserta el iframe de YouTube. Así la
+   página no pide nada a Google hasta que el visitante lo pide.
+   ═══════════════════════════════════════════════ */
+
+(function () {
+  "use strict";
+
+  const boxes = document.querySelectorAll(".ytlite[data-yt]");
+  if (!boxes.length) return;
+
+  boxes.forEach((box) => {
+    const id = (box.dataset.yt || "").trim();
+    if (!id) return; // sin ID todavía: se queda el cartel de «próximamente»
+
+    const ph = box.querySelector(".demo__placeholder");
+    if (!ph) return;
+
+    const title = box.dataset.title || "Ver el video";
+
+    // El placeholder pasa de imagen decorativa a botón real.
+    ph.removeAttribute("role");
+    ph.removeAttribute("aria-label");
+    ph.setAttribute("tabindex", "0");
+    ph.setAttribute("role", "button");
+    ph.setAttribute("aria-label", "Reproducir: " + title);
+    box.classList.add("ytlite--ready");
+
+    const soon = ph.querySelector(".demo__soon");
+    if (soon) soon.textContent = "Ver el video";
+
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+
+      const frame = document.createElement("iframe");
+      frame.className = "demo__media";
+      frame.src =
+        "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(id) +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      frame.title = title;
+      frame.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.allowFullscreen = true;
+      frame.loading = "lazy";
+
+      ph.replaceWith(frame);
+    };
+
+    ph.addEventListener("click", load);
+    ph.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        load();
+      }
+    });
+    // Precalentar la conexión al pasar el mouse: el play se siente instantáneo.
+    ph.addEventListener(
+      "pointerenter",
+      () => {
+        if (document.getElementById("yt-preconnect")) return;
+        const l = document.createElement("link");
+        l.id = "yt-preconnect";
+        l.rel = "preconnect";
+        l.href = "https://www.youtube-nocookie.com";
+        document.head.appendChild(l);
+      },
+      { once: true }
+    );
+  });
+})();

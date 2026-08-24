@@ -1195,6 +1195,22 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   color: var(--muted);
 }
 
+/* Reproductor de YouTube con carga diferida — lo activa js/video.js.
+   Sin data-yt el bloque queda como placeholder estático y no es clickeable. */
+.ytlite { position: absolute; inset: 0; }
+.ytlite--ready .demo__placeholder {
+  cursor: pointer;
+  transition: filter 0.25s ease;
+}
+.ytlite--ready .demo__placeholder:hover,
+.ytlite--ready .demo__placeholder:focus-visible { filter: brightness(1.12); }
+.ytlite--ready .demo__placeholder:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+.ytlite--ready .demo__play { transition: transform 0.25s ease; }
+.ytlite--ready .demo__placeholder:hover .demo__play { transform: scale(1.07); }
+
 /* ═══════════ CALCULADORA ROI ═══════════ */
 .roi { padding: clamp(70px, 10vw, 120px) 0; background: var(--bg-2); }
 .roi__card {

@@ -11,3 +11,7 @@ desktop.ini
 .DS_Store
 
 # Nota: dist/ SÍ se versiona — es el directorio que publica Cloudflare Pages.
+
+# Videos fuente para subir a YouTube — no se versionan ni se deployan (96 MB)
+videos-fuente/
+*.mp4

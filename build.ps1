@@ -29,7 +29,7 @@ foreach ($f in "robot-original-backup.glb", "Logo sin fondo.png", "Logo + nombre
 # ── Minificar CSS y JS propios (vendor ya viene .min) ──
 $targets = @(
   "css\styles.css", "css\fonts.css",
-  "js\main.js", "js\extras.js", "js\robot3d.js"
+  "js\main.js", "js\extras.js", "js\robot3d.js", "js\video.js"
 )
 foreach ($t in $targets) {
   $src = Join-Path $root $t
