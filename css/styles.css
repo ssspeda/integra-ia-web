@@ -1198,12 +1198,41 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
 /* Reproductor de YouTube con carga diferida — lo activa js/video.js.
    Sin data-yt el bloque queda como placeholder estático y no es clickeable. */
 .ytlite { position: absolute; inset: 0; }
-.ytlite--ready .demo__placeholder {
-  cursor: pointer;
-  transition: filter 0.25s ease;
+
+/* El iframe DEBE llenar el marco. Va absoluto y con !important porque el
+   embed trae sus propios atributos width/height (1280x720, necesarios para
+   que YouTube mida bien al arrancar) y sin esto los usaría como tamaño real. */
+.ytlite iframe.demo__media {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
 }
-.ytlite--ready .demo__placeholder:hover,
-.ytlite--ready .demo__placeholder:focus-visible { filter: brightness(1.12); }
+
+/* Poster: un frame del propio video, servido desde assets/videos/.
+   Se oscurece un poco para que el botón de play y el texto se lean encima. */
+.ytlite__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.62) saturate(0.95);
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+/* Sin ID todavía no hay video que anunciar: se esconde el frame. */
+.ytlite:not(.ytlite--ready) .ytlite__poster { display: none; }
+.ytlite--ready .demo__placeholder:hover .ytlite__poster,
+.ytlite--ready .demo__placeholder:focus-visible .ytlite__poster {
+  filter: brightness(0.78) saturate(1);
+  transform: scale(1.02);
+}
+/* El play y el texto van por encima del poster. */
+.ytlite--ready .demo__play,
+.ytlite--ready .demo__soon { position: relative; z-index: 1; }
+.ytlite--ready .demo__soon { text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); }
+.ytlite--ready .demo__placeholder { cursor: pointer; }
 .ytlite--ready .demo__placeholder:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: -3px;
