@@ -3,19 +3,20 @@
      AGENTE ESTRELLA — Sistema Agéntico Modular para Fudo
      Página dedicada, enlazada desde la sección #agente-estrella del index.
 
-     ► PENDIENTE DEL USUARIO — VIDEOS DE LOS MÓDULOS
-       Cada módulo tiene un bloque .mod__video con un placeholder.
-       Para poner el video, REEMPLAZÁ el <div class="demo__placeholder">…</div>
-       entero por una de estas dos opciones:
+     ► VIDEOS DE LOS MÓDULOS — LISTOS (2026-08-24)
+       Los 4 van por YouTube (no listados): los archivos superan el límite
+       de 25 MB por archivo de Cloudflare Pages. Los originales quedan en
+       videos-fuente\ (fuera del deploy, gitignoreados).
 
-       · Archivo propio (preferido — no requiere tocar la CSP):
-         <video class="demo__media" src="../assets/fudo-modulo-1.mp4"
-                poster="../assets/og-cover.png" controls preload="none"></video>
+         01 Facturas     W3TjQqlaoA0    videos-fuente/modulo-1-facturas.mp4
+         02 Compras      lan_RlizJF0    videos-fuente/modulo-2-compras.mp4
+         03 Producción   ptapbXnk424    videos-fuente/modulo-3-produccion.mp4
+         04 Consultas    ySI5oVrJD74    videos-fuente/modulo-4-consultas.mp4
 
-       · YouTube (requiere agregar youtube.com a frame-src en _headers y .htaccess):
-         <iframe class="demo__media" src="https://www.youtube.com/embed/ID"
-                 title="Módulo 1" allow="encrypted-media; picture-in-picture"
-                 allowfullscreen loading="lazy"></iframe>
+       Para cambiar uno, editar su data-yt más abajo (solo el ID, lo que va
+       después de "?v=" o de "youtu.be/"). js/video.js arma el reproductor:
+       no contacta a Google hasta que el visitante hace clic. Con data-yt
+       vacío vuelve solo al cartel "próximamente".
 
      ► Por pedido explícito: esta página NO menciona precios ni costos.
      ═══════════════════════════════════════════════════════════════ -->
@@ -24,7 +25,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema Agéntico Modular para Fudo — nuestro agente estrella | Integra IA</title>
-  <meta name="description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra y producción, precios y stock, pedidos y deliverys." />
+  <meta name="description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra, órdenes de producción y consultas por WhatsApp." />
   <meta name="author" content="Integra IA" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -36,7 +37,7 @@
   <meta property="og:locale" content="es_AR" />
   <meta property="og:url" content="https://integraia.com/agentes/sistema-fudo.html" />
   <meta property="og:title" content="Sistema Agéntico Modular para Fudo — Integra IA" />
-  <meta property="og:description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra y producción, precios y stock, pedidos y deliverys." />
+  <meta property="og:description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra, órdenes de producción y consultas por WhatsApp." />
   <meta property="og:image" content="https://integraia.com/assets/agentes/sistema-fudo.webp" />
   <meta property="og:image:width" content="1600" />
   <meta property="og:image:height" content="1200" />
@@ -45,7 +46,7 @@
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sistema Agéntico Modular para Fudo — Integra IA" />
-  <meta name="twitter:description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra y producción, precios y stock, pedidos y deliverys." />
+  <meta name="twitter:description" content="Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra, órdenes de producción y consultas por WhatsApp." />
   <meta name="twitter:image" content="https://integraia.com/assets/agentes/sistema-fudo.webp" />
 
   <meta name="theme-color" content="#0a0a1f" />
@@ -121,7 +122,7 @@
 
         <div class="mods">
 
-          <!-- ── MÓDULO 1 ── -->
+          <!-- ── MÓDULO 01 ── -->
           <article class="mod">
             <div class="mod__head">
               <span class="mod__num" aria-hidden="true">01</span>
@@ -139,92 +140,108 @@
                 </ul>
               </div>
               <figure class="mod__video">
-                <div class="demo__placeholder" role="img" aria-label="Video del módulo 1 — próximamente">
-                  <span class="demo__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                  <p class="demo__soon">Video · próximamente</p>
+                <!-- ► Pegá el ID del video de YouTube en data-yt (lo que va después de "?v=").
+                     Vacío = queda el cartel "próximamente". Archivo fuente: videos-fuente/modulo-1-facturas.mp4 -->
+                <div class="ytlite" data-yt="W3TjQqlaoA0" data-title="Módulo 01 — Carga automática de facturas">
+                  <div class="demo__placeholder" role="img" aria-label="Video del módulo 01 — próximamente">
+                    <span class="demo__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <p class="demo__soon">Video · próximamente</p>
+                  </div>
                 </div>
               </figure>
             </div>
           </article>
 
-          <!-- ── MÓDULO 2 ── -->
+          <!-- ── MÓDULO 02 ── -->
           <article class="mod">
             <div class="mod__head">
               <span class="mod__num" aria-hidden="true">02</span>
-              <h3>Órdenes de compra y de producción</h3>
+              <h3>Órdenes de compra</h3>
             </div>
             <div class="mod__grid">
               <div>
-                <p class="mod__desc">El agente mira el stock real, el consumo de los últimos días y lo que tenés vendido, y arma solo las <strong>órdenes de compra para proveedores</strong> y las <strong>órdenes de producción para cocina</strong>. Vos las aprobás; él las ejecuta.</p>
+                <p class="mod__desc">El agente mira el stock real, el consumo de los últimos días y lo que tenés vendido, y arma solo las <strong>órdenes de compra por proveedor</strong>. Vos las aprobás; él las deja cargadas en Fudo, listas para enviar.</p>
                 <ul class="mod__feats">
                   <li>Detecta qué falta antes de que te quedes sin stock</li>
-                  <li>Arma la orden de compra por proveedor, lista para enviar</li>
-                  <li>Genera la orden de producción diaria para cocina</li>
-                  <li>Todo queda registrado dentro de Fudo</li>
+                  <li>Arma la orden por proveedor, con el precio del último remito</li>
+                  <li>Vos aprobás desde WhatsApp; nada se compra a tus espaldas</li>
+                  <li>Queda registrada dentro de Fudo, sin doble carga</li>
                 </ul>
               </div>
               <figure class="mod__video">
-                <div class="demo__placeholder" role="img" aria-label="Video del módulo 2 — próximamente">
-                  <span class="demo__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                  <p class="demo__soon">Video · próximamente</p>
+                <!-- ► Pegá el ID del video de YouTube en data-yt (lo que va después de "?v=").
+                     Vacío = queda el cartel "próximamente". Archivo fuente: videos-fuente/modulo-2-compras.mp4 -->
+                <div class="ytlite" data-yt="lan_RlizJF0" data-title="Módulo 02 — Órdenes de compra">
+                  <div class="demo__placeholder" role="img" aria-label="Video del módulo 02 — próximamente">
+                    <span class="demo__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <p class="demo__soon">Video · próximamente</p>
+                  </div>
                 </div>
               </figure>
             </div>
           </article>
 
-          <!-- ── MÓDULO 3 ── -->
+          <!-- ── MÓDULO 03 ── -->
           <article class="mod">
             <div class="mod__head">
               <span class="mod__num" aria-hidden="true">03</span>
-              <h3>Precios y stock siempre al día</h3>
+              <h3>Órdenes de producción</h3>
             </div>
             <div class="mod__grid">
               <div>
-                <p class="mod__desc">Cuando cambia un costo, cambia todo lo que depende de él. El agente <strong>recalcula tus márgenes</strong>, actualiza los precios de venta según las reglas que vos definís y mantiene el stock sincronizado sin que nadie lo toque a mano.</p>
+                <p class="mod__desc">Cocina sabe qué producir y cuánto. El agente cruza recetas, stock de elaborados y venta proyectada, y genera la <strong>orden de producción diaria</strong>. Al cerrarla, descuenta los insumos y deja el stock al día.</p>
                 <ul class="mod__feats">
-                  <li>Recalcula el costo de cada receta al cambiar un insumo</li>
-                  <li>Actualiza precios de venta según tu margen objetivo</li>
-                  <li>Stock sincronizado en tiempo real</li>
-                  <li>Alertas cuando un plato deja de ser rentable</li>
+                  <li>Calcula cuánto producir de cada elaborado</li>
+                  <li>Descuenta insumos y actualiza el stock al cerrar la producción</li>
+                  <li>Recalcula el costo de la receta cuando cambia un insumo</li>
+                  <li>Todo queda asentado en Fudo, sin planillas paralelas</li>
                 </ul>
               </div>
               <figure class="mod__video">
-                <div class="demo__placeholder" role="img" aria-label="Video del módulo 3 — próximamente">
-                  <span class="demo__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                  <p class="demo__soon">Video · próximamente</p>
+                <!-- ► Pegá el ID del video de YouTube en data-yt (lo que va después de "?v=").
+                     Vacío = queda el cartel "próximamente". Archivo fuente: videos-fuente/modulo-3-produccion.mp4 -->
+                <div class="ytlite" data-yt="ptapbXnk424" data-title="Módulo 03 — Órdenes de producción">
+                  <div class="demo__placeholder" role="img" aria-label="Video del módulo 03 — próximamente">
+                    <span class="demo__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <p class="demo__soon">Video · próximamente</p>
+                  </div>
                 </div>
               </figure>
             </div>
           </article>
 
-          <!-- ── MÓDULO 4 ── -->
+          <!-- ── MÓDULO 04 ── -->
           <article class="mod">
             <div class="mod__head">
               <span class="mod__num" aria-hidden="true">04</span>
-              <h3>Pedidos y deliverys</h3>
+              <h3>Consultas sobre tu negocio</h3>
             </div>
             <div class="mod__grid">
               <div>
-                <p class="mod__desc">La punta del mostrador. El agente <strong>toma pedidos por WhatsApp</strong>, los carga en Fudo como cualquier otra comanda, y coordina la salida: le avisa a cocina, notifica al delivery y le confirma al cliente.</p>
+                <p class="mod__desc">Preguntále a tu negocio por WhatsApp. <em>¿Cuánto vendimos ayer? ¿Cuánto stock queda de muzzarella? ¿A cuánto me salió el kilo la última vez?</em> El agente consulta Fudo y <strong>te responde en el momento</strong>, sin que abras un reporte.</p>
                 <ul class="mod__feats">
-                  <li>Toma el pedido conversando, sin formularios</li>
-                  <li>Lo carga en Fudo igual que un mozo</li>
-                  <li>Avisa a cocina y al delivery en el momento</li>
-                  <li>Confirma al cliente y responde por el estado del pedido</li>
+                  <li>Ventas, stock, costos y márgenes al instante</li>
+                  <li>Responde en lenguaje natural: sin filtros ni tableros</li>
+                  <li>Sirve desde el celular, estés donde estés</li>
+                  <li>Sin usuarios nuevos ni permisos que tocar en Fudo</li>
                 </ul>
               </div>
               <figure class="mod__video">
-                <div class="demo__placeholder" role="img" aria-label="Video del módulo 4 — próximamente">
-                  <span class="demo__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                  <p class="demo__soon">Video · próximamente</p>
+                <!-- ► Pegá el ID del video de YouTube en data-yt (lo que va después de "?v=").
+                     Vacío = queda el cartel "próximamente". Archivo fuente: videos-fuente/modulo-4-consultas.mp4 -->
+                <div class="ytlite" data-yt="ySI5oVrJD74" data-title="Módulo 04 — Consultas sobre tu negocio">
+                  <div class="demo__placeholder" role="img" aria-label="Video del módulo 04 — próximamente">
+                    <span class="demo__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <p class="demo__soon">Video · próximamente</p>
+                  </div>
                 </div>
               </figure>
             </div>
@@ -291,7 +308,7 @@
     "@type": "Service",
     "name": "Sistema Agéntico Modular para Fudo",
     "serviceType": "Automatización con agentes de inteligencia artificial",
-    "description": "Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra y producción, precios y stock, pedidos y deliverys.",
+    "description": "Cuatro módulos que operan tu negocio gastronómico dentro de Fudo: carga automática de facturas por foto, órdenes de compra, órdenes de producción y consultas por WhatsApp.",
     "url": "https://integraia.com/agentes/sistema-fudo.html",
     "provider": {
       "@type": "ProfessionalService",
@@ -305,9 +322,9 @@
       "name": "Módulos del sistema",
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carga automática de facturas" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Órdenes de compra y de producción" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Precios y stock siempre al día" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pedidos y deliverys" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Órdenes de compra" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Órdenes de producción" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultas sobre tu negocio" } }
       ]
     },
     "areaServed": [{ "@type": "Country", "name": "Argentina" }, { "@type": "Place", "name": "Global" }]
@@ -324,5 +341,6 @@
     ]
   }
   </script>
+  <script src="../js/video.js" defer></script>
 </body>
 </html>

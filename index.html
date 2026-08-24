@@ -205,9 +205,9 @@
 
           <ul class="star__mods reveal-up">
             <li><i>01</i> Carga de facturas</li>
-            <li><i>02</i> Órdenes de compra y producción</li>
-            <li><i>03</i> Precios y stock</li>
-            <li><i>04</i> Pedidos y deliverys</li>
+            <li><i>02</i> Órdenes de compra</li>
+            <li><i>03</i> Órdenes de producción</li>
+            <li><i>04</i> Consultas por WhatsApp</li>
           </ul>
 
           <div class="star__actions reveal-up">
@@ -340,12 +340,12 @@
           </p>
           <h3>Sistema Modular para Fudo</h3>
           <p class="agent__tag">Restaurantes &amp; tiendas de comida · Fudo</p>
-          <p>Opera tu negocio gastronómico completo sobre Fudo: le sacás una foto a la factura y se carga sola; genera órdenes de compra y de producción, actualiza precios, toma pedidos y avisa a los deliverys. Absolutamente todo, automático.</p>
+          <p>Opera tu negocio gastronómico completo sobre Fudo: le sacás una foto a la factura y se carga sola; genera las órdenes de compra y de producción, y te responde por WhatsApp cualquier consulta de ventas, stock o costos. Absolutamente todo, automático.</p>
           <ul class="agent__feats">
             <li>Carga de facturas por imagen</li>
-            <li>Órdenes de compra y producción automáticas</li>
-            <li>Actualización de precios y stock</li>
-            <li>Toma de pedidos + notificación a deliverys</li>
+            <li>Órdenes de compra automáticas</li>
+            <li>Órdenes de producción para cocina</li>
+            <li>Consultas de ventas, stock y costos</li>
           </ul>
           <a class="agent__more" href="agentes/sistema-fudo.html">Ver el sistema completo <span aria-hidden="true">→</span></a>
         </div>
@@ -598,15 +598,17 @@
         <p class="section-head__sub reveal-up">Así conversa un agente real con un cliente: natural, al instante, con el tono de la marca.</p>
       </header>
 
-      <!-- ► REEMPLAZAR: pegá el embed (YouTube/Vimeo) o un <video src> dentro de .demo__frame.
-           Para YouTube: <iframe class="demo__media" src="https://www.youtube.com/embed/ID" title="Demo Integra IA" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-           Para archivo: <video class="demo__media" src="assets/demo.mp4" poster="assets/og-cover.png" controls preload="none"></video> -->
+      <!-- Demo: agente de atención al cliente (YouTube no listado, ID DG3fdCKBG-w).
+           Para cambiarlo, editar el data-yt de abajo: solo el ID, lo que va después
+           de "?v=" o de "youtu.be/". Vacío = vuelve al cartel "próximamente". -->
       <figure class="demo__frame reveal-up">
-        <div class="demo__placeholder" role="img" aria-label="Demo en video — próximamente">
-          <span class="demo__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          <p class="demo__soon">Video demo · próximamente</p>
+        <div class="ytlite" data-yt="DG3fdCKBG-w" data-title="Demo — agente de atención al cliente respondiendo en vivo">
+          <div class="demo__placeholder" role="img" aria-label="Demo en video — próximamente">
+            <span class="demo__play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <p class="demo__soon">Video demo · próximamente</p>
+          </div>
         </div>
       </figure>
     </div>
@@ -1182,6 +1184,7 @@
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/extras.js" defer></script>
+  <script src="js/video.js" defer></script>
 
   <!-- Robot 3D: three.js por módulos ES, solo se descarga al ejecutarse el import -->
   <script type="importmap">
