@@ -3,7 +3,8 @@
    Sin dependencias. Degrada bien si algo falta.
 
    Uso en el HTML:
-     <div class="ytlite" data-yt="ID_DEL_VIDEO" data-title="Título accesible">
+     <div class="ytlite" data-yt="ID_DEL_VIDEO" data-title="Título accesible"
+          data-mute="1">   <!-- data-mute es opcional: arranca sin audio -->
        <div class="demo__placeholder" …>
          <img class="ytlite__poster" src="…" alt="" />   ← frame del video
          …botón de play + texto…
@@ -68,10 +69,16 @@
 
       ph.replaceWith(frame);
 
+      /* data-mute="1" arranca sin audio (el visitante puede activarlo
+         desde el propio reproductor). Se usa donde el video acompaña
+         y no explica: que suene solo al hacer clic espanta. */
+      const mute = box.dataset.mute === "1" ? "&mute=1" : "";
+
       const src =
         "https://www.youtube-nocookie.com/embed/" +
         encodeURIComponent(id) +
-        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1" +
+        mute;
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {

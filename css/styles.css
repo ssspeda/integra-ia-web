@@ -1959,13 +1959,21 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   border: 1px solid rgba(255, 203, 92, 0.35);
 }
 .mod__head h3 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); }
+/* Texto arriba, video abajo a todo el ancho del módulo. Ojo antes de
+   volver a las dos columnas: con el marco en ~582px YouTube sirve 360p
+   por decisión propia (su ABR mira el tamaño del player, no la conexión)
+   y los screencasts de WhatsApp se ven borrosos. Desde ~940px pasa a
+   1080p solo. Medido, no estimado. */
 .mod__grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(24px, 4vw, 44px);
+  grid-template-columns: 1fr;
+  gap: clamp(22px, 3vw, 32px);
   align-items: start;
   margin-top: 18px;
 }
+/* El texto no acompaña al video a todo el ancho: renglones de 90 caracteres
+   no se leen. */
+.mod__grid > :first-child { max-width: 72ch; }
 .mod__desc { color: var(--muted); font-size: 0.97rem; }
 .mod__desc strong { color: var(--text); }
 .mod__feats { margin-top: 18px; display: grid; gap: 10px; }
@@ -1996,10 +2004,6 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
 .mod__video .demo__placeholder { gap: 14px; }
 .mod__video .demo__play { width: 64px; height: 64px; }
 .mod__video .demo__play svg { width: 26px; height: 26px; }
-
-@media (max-width: 860px) {
-  .mod__grid { grid-template-columns: 1fr; }
-}
 
 /* ═══════════ REDUCED MOTION ═══════════ */
 @media (prefers-reduced-motion: reduce) {
