@@ -136,6 +136,20 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    /* Las posiciones de los ScrollTrigger se calculan con la altura que la
+       página tiene en ese instante. Si después entran imágenes diferidas o
+       las fuentes, todo queda corrido: entrando por un ancla (#casos) la
+       sección arrancaba con los triggers pasados y las tarjetas invisibles.
+       Por eso se recalcula cuando el layout ya no se mueve más. */
+    (function refrescos() {
+      const refrescar = () => ScrollTrigger.refresh();
+      window.addEventListener("load", refrescar);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(refrescar);
+      document.querySelectorAll("img[loading='lazy']").forEach((img) => {
+        if (!img.complete) img.addEventListener("load", refrescar, { once: true });
+      });
+    })();
+
     /* HERO: el logo se "pinta" con UNA pincelada continua (path en forma de 8).
        Sin JS o sin GSAP el trazo queda sin animar → logo completo visible. */
     const paintPath = document.getElementById("paintPath");
@@ -356,16 +370,22 @@
       const cards = gsap.utils.toArray(".case");
       cards.forEach((card, i) => {
         if (i === cards.length - 1) return;
-        // La tarjeta anterior se desvanece por completo cuando la siguiente la cubre
+        /* La tarjeta anterior solo se ENCOGE cuando la siguiente la cubre.
+           Nada de animar la opacidad: las tarjetas son sticky y tienen fondo
+           solido, asi que la siguiente ya las tapa sola. Cuando el fade
+           llegaba a 0, bastaba con que los triggers quedaran mal calculados
+           --- entrar por #casos, por ejemplo --- para que la seccion entera
+           se viera vacia. Sin opacidad animada eso no puede pasar: en el
+           peor caso una tarjeta queda encogida, nunca invisible. */
         gsap.to(card.querySelector(".case__inner"), {
           scale: 0.93,
-          opacity: 0,
           ease: "none",
           scrollTrigger: {
             trigger: cards[i + 1],
             start: "top 80%",
             end: "top top+=140",
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
       });
