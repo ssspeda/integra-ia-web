@@ -4,7 +4,9 @@
 
    Uso en el HTML:
      <div class="ytlite" data-yt="ID_DEL_VIDEO" data-title="Título accesible"
-          data-mute="1">   <!-- data-mute es opcional: arranca sin audio -->
+          data-mute="1"        <!-- opcional: arranca sin audio -->
+          data-hide-title="1"  <!-- opcional: tapa el titulo que pone YouTube -->
+          data-speed="1.5">    <!-- opcional: velocidad de arranque -->
        <div class="demo__placeholder" …>
          <img class="ytlite__poster" src="…" alt="" />   ← frame del video
          …botón de play + texto…
@@ -23,6 +25,51 @@
 
   const boxes = document.querySelectorAll(".ytlite[data-yt]");
   if (!boxes.length) return;
+
+  /* Pone el video a data-speed apenas arranca.
+     Se le habla al reproductor por postMessage con enablejsapi=1, en vez de
+     cargar https://www.youtube.com/iframe_api: la API pesa y habría que
+     abrirle un dominio más a la CSP para hacer exactamente lo mismo.
+     El comando solo entra cuando el reproductor ya terminó de cargar, y no
+     avisa cuándo es: por eso se reintenta un rato corto y se corta al
+     confirmar que quedó aplicado. Si algo falla, el video se ve a 1x, que
+     es una degradación perfectamente aceptable. */
+  function ponerVelocidad(frame, velocidad) {
+    const destino = "https://www.youtube-nocookie.com";
+    const mandar = (func, args) => {
+      try {
+        frame.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: func, args: args || [] }), destino);
+      } catch (e) { /* todavía no hay contentWindow: lo toma el proximo intento */ }
+    };
+
+    let listo = false;
+    const alRecibir = (e) => {
+      if (e.source !== frame.contentWindow) return;
+      let d; try { d = JSON.parse(e.data); } catch (_) { return; }
+      if (d && d.info && d.info.playbackRate === velocidad) {
+        listo = true;
+        clearInterval(reintento);
+        window.removeEventListener("message", alRecibir);
+      }
+    };
+    window.addEventListener("message", alRecibir);
+
+    let intentos = 0;
+    const reintento = setInterval(() => {
+      if (listo || ++intentos > 24) {           // ~12s de margen
+        clearInterval(reintento);
+        window.removeEventListener("message", alRecibir);
+        return;
+      }
+      // handshake: sin esto el reproductor ignora los comandos y no responde
+      try {
+        frame.contentWindow.postMessage(
+          JSON.stringify({ event: "listening", id: 1, channel: "widget" }), destino);
+      } catch (e) { return; }
+      mandar("setPlaybackRate", [velocidad]);
+    }, 500);
+  }
 
   boxes.forEach((box) => {
     const id = (box.dataset.yt || "").trim();
@@ -69,22 +116,42 @@
 
       ph.replaceWith(frame);
 
+      /* Tapa el rótulo con el título y el canal que YouTube encima arriba
+         a la izquierda. No hay parámetro que lo saque: probado, con
+         controls=0 aparece igual. Un degradado oscuro sobre la franja
+         superior lo cubre, y como se dibuja encima del iframe también
+         atrapa el clic que se iría a youtube.com. En estos videos ahí
+         arriba solo está la barra de pestañas del navegador grabado, o
+         sea que no se pierde nada de la demo. */
+      if (box.dataset.hideTitle === "1") {
+        const tapa = document.createElement("span");
+        tapa.className = "ytlite__tapa";
+        tapa.setAttribute("aria-hidden", "true");
+        frame.after(tapa);
+      }
+
       /* data-mute="1" arranca sin audio (el visitante puede activarlo
          desde el propio reproductor). Se usa donde el video acompaña
          y no explica: que suene solo al hacer clic espanta. */
       const mute = box.dataset.mute === "1" ? "&mute=1" : "";
 
+      /* data-speed lo necesita para poder mandarle ordenes al reproductor. */
+      const velocidad = parseFloat(box.dataset.speed);
+      const conApi = velocidad > 0 ? "&enablejsapi=1" : "";
+
       const src =
         "https://www.youtube-nocookie.com/embed/" +
         encodeURIComponent(id) +
         "?autoplay=1&rel=0&modestbranding=1&playsinline=1" +
-        mute;
+        mute + conApi;
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           frame.src = src;
         });
       });
+
+      if (velocidad > 0) ponerVelocidad(frame, velocidad);
     };
 
     ph.addEventListener("click", load);

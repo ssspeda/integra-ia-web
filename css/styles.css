@@ -1228,6 +1228,33 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   filter: brightness(0.78) saturate(1);
   transform: scale(1.02);
 }
+/* Tapa del rótulo de YouTube (la pone js/video.js con data-hide-title="1").
+   No hay parámetro que saque ese título: probado, con controls=0 sale igual.
+
+   Aparece SOLO con el puntero encima, que es exactamente cuando el reproductor
+   lo muestra. Sin puntero, el video se ve entero y sin banda: si estuviera
+   siempre visible, sería una franja negra permanente sobre la demo.
+
+   Va por encima del iframe, así que también se come el clic que llevaba a
+   youtube.com. En estos videos, arriba solo está la barra de pestañas del
+   navegador grabado: no se pierde nada de la demo. */
+.ytlite__tapa {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 15%;
+  min-height: 62px;
+  background: linear-gradient(to bottom, #000 0%, #000 66%, rgba(0, 0, 0, 0.82) 84%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.ytlite:hover .ytlite__tapa,
+.ytlite:focus-within .ytlite__tapa {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* El play y el texto van por encima del poster. */
 .ytlite--ready .demo__play,
 .ytlite--ready .demo__soon { position: relative; z-index: 1; }
