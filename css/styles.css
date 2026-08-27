@@ -2005,6 +2005,44 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
 .mod__video .demo__play { width: 64px; height: 64px; }
 .mod__video .demo__play svg { width: 26px; height: 26px; }
 
+/* ═══════════ AJUSTES DE CELULAR ═══════════
+   Medido en 320 / 360 / 390 / 414 / 430 px sobre el sitio publicado.
+   No hay desborde horizontal en ningún tamaño; esto corrige tres cosas
+   que sí molestan en la mano. */
+
+/* 1. La barra CTA fija. El botón mide 189px y no se encoge, así que el
+      texto se queda con lo que sobra: en 320px eran 87px → SEIS renglones
+      y una barra de 125px, el 18% de la pantalla. */
+@media (max-width: 430px) {
+  /* el subtítulo es lo primero que sobra */
+  .mcta__txt small { display: none; }
+}
+@media (max-width: 380px) {
+  /* acá ya no entra nada legible al lado del botón: queda el CTA solo */
+  .mcta__txt { display: none; }
+  .mcta .btn { flex: 1; justify-content: center; }
+}
+
+/* 2. Objetivos táctiles. Los links de migas y de pie medían 22px de alto:
+      se le erra con el pulgar. El padding agranda el área sensible sin
+      mover nada de lugar (el gap compensa el alto que agregan). */
+@media (max-width: 768px) {
+  .apage__crumbs { gap: 4px; }
+  .apage__crumbs a { display: inline-block; padding: 10px 4px; }
+  .footer__links { gap: 10px 20px; }
+  .footer__links a { display: inline-block; padding: 10px 2px; }
+  .footer__legal { gap: 8px 16px; flex-wrap: wrap; }
+  .footer__legal a { display: inline-block; padding: 10px 2px; }
+  .agent__more { padding: 10px 0; }
+  .legal__back { display: inline-block; padding: 10px 0; }
+}
+
+/* 3. Los rótulos de los mockups de chat quedaban en 10.9px, por debajo de
+      lo que se lee cómodo en un teléfono. */
+@media (max-width: 768px) {
+  .mk-head { font-size: 0.75rem; }
+}
+
 /* ═══════════ REDUCED MOTION ═══════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
