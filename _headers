@@ -2,8 +2,13 @@
 # Si el host es Apache/Nginx, replicar estos headers en .htaccess o server block.
 # El formulario envía a api.web3forms.com (ya permitido en connect-src).
 # Fuentes y GSAP ahora self-hosted; jsdelivr queda SOLO para three.js (robot 3D).
+# El robot 3D necesita tres permisos que parecen de mas y no lo son:
+#   'wasm-unsafe-eval'  -> three.js compila WebAssembly para decodificar el .glb
+#   blob: en connect-src -> GLTFLoader saca las texturas del .glb como blobs y las busca con fetch
+#   blob: en img-src     -> y despues las usa como imagen
+# Sin esto el robot del hero aparece sin texturas. Verificado sirviendo dist/ con esta misma CSP.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; manifest-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' blob: https://api.web3forms.com; manifest-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
