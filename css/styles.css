@@ -1476,6 +1476,21 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
     transition: transform 0.35s var(--ease), opacity 0.3s;
   }
   .nav__links.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+  /* Con el menu abierto el documento se congela: si no, un swipe sobre el
+     panel scrollea la pagina de atras (el panel no cubre toda la pantalla)
+     y el menu queda flotando sobre otra seccion. La clase la pone main.js. */
+  html.nav-abierto,
+  html.nav-abierto body { overflow: hidden; }
+
+  /* Y si el menu no entra a lo alto, que scrollee el, no la pagina:
+     overscroll-behavior corta el encadenamiento al llegar al final. */
+  .nav__links.is-open {
+    max-height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
   .nav__links > a:not(.btn) { padding: 16px 4px; border-bottom: 1px solid var(--stroke); }
   .nav__cta { margin-top: 18px; justify-content: center; }
   .nav__burger { display: flex; }

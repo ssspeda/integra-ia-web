@@ -20,18 +20,37 @@
   window.addEventListener("scroll", onScrollNav, { passive: true });
   onScrollNav();
 
-  burger.addEventListener("click", () => {
-    const open = navLinks.classList.toggle("is-open");
+  /* El panel del menu no cubre toda la pantalla, asi que un swipe encima
+     scrolleaba la pagina de atras y el menu quedaba flotando sobre otra
+     seccion. Con el menu abierto se congela el documento: la clase va en
+     <html> y el CSS hace el resto. Se evita a proposito el truco de
+     position:fixed sobre el body, que cambia el scroll del documento y
+     obligaria a recalcular todos los ScrollTrigger al cerrar. */
+  const abrirMenu = (open) => {
+    navLinks.classList.toggle("is-open", open);
     burger.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", String(open));
+    document.documentElement.classList.toggle("nav-abierto", open);
+  };
+
+  burger.addEventListener("click", () => abrirMenu(!navLinks.classList.contains("is-open")));
+  navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => abrirMenu(false)));
+
+  // Escape cierra, y tocar fuera del panel tambien.
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navLinks.classList.contains("is-open")) abrirMenu(false);
   });
-  navLinks.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      navLinks.classList.remove("is-open");
-      burger.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
-    })
-  );
+  document.addEventListener("click", (e) => {
+    if (!navLinks.classList.contains("is-open")) return;
+    if (navLinks.contains(e.target) || burger.contains(e.target)) return;
+    abrirMenu(false);
+  });
+
+  /* Si se agranda la ventana con el menu abierto, el panel desaparece por
+     CSS pero el documento quedaria congelado. */
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && navLinks.classList.contains("is-open")) abrirMenu(false);
+  });
 
   /* ── CONTADORES animados ───────────────────── */
   function animateCount(el) {
