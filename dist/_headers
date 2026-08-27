@@ -7,8 +7,10 @@
 #   blob: en connect-src -> GLTFLoader saca las texturas del .glb como blobs y las busca con fetch
 #   blob: en img-src     -> y despues las usa como imagen
 # Sin esto el robot del hero aparece sin texturas. Verificado sirviendo dist/ con esta misma CSP.
+# static.cloudflareinsights.com + cloudflareinsights.com: Cloudflare Pages inyecta
+# solo el beacon de Web Analytics. Sin estos dos la CSP lo bloquea y no hay metricas.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' blob: https://api.web3forms.com; manifest-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' blob: https://api.web3forms.com https://cloudflareinsights.com; manifest-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

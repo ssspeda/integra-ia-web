@@ -47,11 +47,20 @@ Parámetros de debug en la URL: `?paint=0.6` (congela el pintado del logo),
 
 ## Deploy
 
-**Cloudflare Pages** (recomendado — respeta `_headers` y tiene edge en Argentina):
+Dominio de producción: **integraarg.com** (registrado en Cloudflare).
 
-- Connect to Git → este repo
-- Build command: *(vacío)*
-- Output directory: `dist`
+**Cloudflare** — el dashboard ofrece dos caminos y los dos sirven, porque
+ambos aplican `_headers` y `_redirects`. En los dos el **build command va
+vacío**: `dist/` ya viene versionado, hay que correr `build.ps1` antes del push.
+
+- *Workers* (lo que el panel ofrece por defecto hoy): usa `wrangler.jsonc`,
+  que ya está en la raíz y apunta a `./dist`. Deploy command:
+  `npx wrangler deploy`.
+- *Pages*: Workers & Pages → pestaña **Pages** → Connect to Git → este repo,
+  con **output directory `dist`**. No necesita `wrangler.jsonc`.
+
+Después: **Custom domains** → `integraarg.com` (+ `www`). El DNS se configura
+solo porque el dominio ya vive en Cloudflare.
 
 **GitHub Pages** (alternativa; ignora `_headers`, así que se pierde la CSP y el cache-control):
 

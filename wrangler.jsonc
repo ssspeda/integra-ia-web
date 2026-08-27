@@ -1,0 +1,27 @@
+{
+  // Configuración para desplegar el sitio en Cloudflare Workers (Static Assets).
+  //
+  // Este archivo SOLO hace falta si el proyecto se creó desde el flujo de
+  // "Workers". Si se usa Cloudflare Pages, sobra y no molesta: Pages lo ignora.
+  //
+  // No hay código de Worker: sin "main", el proyecto sirve archivos estáticos y
+  // nada más. El _headers y el _redirects que build.ps1 copia dentro de dist/
+  // los aplica Cloudflare igual que en Pages — o sea que la CSP, el cache y el
+  // redirect 301 de la página vieja de Fudo siguen funcionando.
+  //
+  // Deploy: el repo se conecta a Cloudflare y el deploy command es
+  // "npx wrangler deploy". Build command vacío: dist/ ya viene versionado.
+  // Antes de cada push hay que correr build.ps1 (ver README).
+
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "integra-ia-web",
+  "compatibility_date": "2026-08-24",
+
+  "assets": {
+    "directory": "./dist",
+
+    // El sitio tiene su propia 404.html: que Cloudflare la sirva, con status 404,
+    // en vez de la pantalla genérica.
+    "not_found_handling": "404-page"
+  }
+}
