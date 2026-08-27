@@ -40,6 +40,39 @@ foreach ($t in $targets) {
   Write-Host ("  {0}: {1} KB -> {2} KB" -f $t, $kb1, $kb2)
 }
 
+# ── Versionado por hash ──────────────────────────────────────────────
+# El CSS y el JS se sirven con cache de un año, pero los archivos no cambian
+# de nombre entre deploys. Sin esto, al publicar una corrección Cloudflare y
+# el navegador siguen entregando la versión vieja durante días: HTML nuevo con
+# CSS viejo, que no es "desactualizado", es roto.
+#
+# Se le agrega ?v=<hash del contenido> a cada referencia. El archivo que no
+# cambió conserva su hash y su cache; el que cambió estrena URL y se baja al
+# instante. La query string forma parte de la clave de cache de Cloudflare.
+$versionables = Get-ChildItem "$dist\css", "$dist\js", "$dist\assets\videos" -Recurse -File -Include *.css, *.js, *.webp -ErrorAction SilentlyContinue
+
+$hashes = @{}
+foreach ($f in $versionables) {
+  $rel = $f.FullName.Substring($dist.Length + 1).Replace('\', '/')
+  $hashes[$rel] = (Get-FileHash $f.FullName -Algorithm MD5).Hash.Substring(0, 8).ToLower()
+}
+
+$paginas = Get-ChildItem $dist -Recurse -File -Filter *.html
+foreach ($pagina in $paginas) {
+  $html = Get-Content $pagina.FullName -Raw -Encoding UTF8
+  $original = $html
+  foreach ($rel in $hashes.Keys) {
+    # captura el prefijo relativo (vacío en la raíz, ../ dentro de agentes/)
+    $patron = '(?<attr>(?:href|src)=")(?<pre>(?:\.\./)*)' + [regex]::Escape($rel) + '(?=")'
+    $html = [regex]::Replace($html, $patron, { param($m)
+      $m.Groups['attr'].Value + $m.Groups['pre'].Value + $rel + '?v=' + $hashes[$rel] })
+  }
+  if ($html -ne $original) {
+    [System.IO.File]::WriteAllText($pagina.FullName, $html, (New-Object System.Text.UTF8Encoding $false))
+  }
+}
+Write-Host ("  versionados: {0} archivos en {1} paginas" -f $hashes.Count, $paginas.Count)
+
 # ── .nojekyll: evita que GitHub Pages ignore archivos con guion bajo (_headers) ──
 New-Item -ItemType File (Join-Path $dist ".nojekyll") -Force | Out-Null
 
