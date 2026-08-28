@@ -19,7 +19,7 @@
 
 # Páginas fusionadas: gestion-integral era el mismo producto que sistema-fudo.
 <IfModule mod_alias.c>
-  Redirect 301 /agentes/gestion-integral.html /agentes/sistema-fudo.html
+  Redirect 301 /agentes/gestion-integral.html /agentes/sistema-fudo
 </IfModule>
 
 # Compresión

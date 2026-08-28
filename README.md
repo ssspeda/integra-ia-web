@@ -39,8 +39,13 @@ se versiona porque es el directorio que publica el hosting.
 El robot 3D hace `fetch` del `.glb`, así que no funciona sobre `file://`. Levantar un servidor:
 
 ```
-npx http-server -p 8080
+npx http-server -p 8080 -e html
 ```
+
+El `-e html` **no es opcional**: Cloudflare Pages sirve las páginas sin la
+extensión (`/privacidad`, no `/privacidad.html`) y redirige con 308 si se pide
+con `.html`. Por eso los enlaces internos, los canonical y el sitemap van todos
+sin extensión. Sin ese flag, en local todos los links dan 404.
 
 Parámetros de debug en la URL: `?paint=0.6` (congela el pintado del logo),
 `?blinkhold`, `?wavehold`, `?wave`.
