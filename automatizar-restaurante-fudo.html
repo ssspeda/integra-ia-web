@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     GUÍA — Automatizar la administración de un restaurante (Fudo)
+     Página de CONTENIDO, no de producto: le habla a quien todavía no
+     nos conoce y está buscando su problema, no nuestro servicio.
+     La página de producto es agentes/sistema-fudo.html, y esta enlaza ahí.
+
+     Si se edita el copy, mantener el criterio: nada de precios (pedido
+     explícito del usuario) y nada de números de resultados inventados.
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo automatizar la carga de facturas y el stock de tu restaurante | Integra IA</title>
+  <meta name="description" content="Guía práctica para dejar de cargar facturas de proveedores a mano: qué se puede automatizar en un restaurante, cómo funciona la carga por foto y qué hace falta para empezar." />
+  <meta name="author" content="Integra IA" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="canonical" href="https://integraarg.com/automatizar-restaurante-fudo.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Integra IA" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:url" content="https://integraarg.com/automatizar-restaurante-fudo.html" />
+  <meta property="og:title" content="Cómo automatizar la carga de facturas y el stock de tu restaurante" />
+  <meta property="og:description" content="Guía práctica para dejar de cargar facturas de proveedores a mano: qué se puede automatizar, cómo funciona la carga por foto y qué hace falta para empezar." />
+  <meta property="og:image" content="https://integraarg.com/assets/agentes/sistema-fudo.webp" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Cocina de restaurante" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cómo automatizar la carga de facturas y el stock de tu restaurante" />
+  <meta name="twitter:description" content="Guía práctica para dejar de cargar facturas de proveedores a mano en un restaurante." />
+  <meta name="twitter:image" content="https://integraarg.com/assets/agentes/sistema-fudo.webp" />
+  <meta name="theme-color" content="#0a0a1f" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand" aria-label="Integra IA — inicio">
+        <img class="nav__logo" src="assets/logo.webp" alt="" width="42" height="42"
+             onerror="this.onerror=null;this.src='assets/logo.svg'" />
+        <span class="nav__name">INTEGRA&nbsp;IA</span>
+      </a>
+      <a class="btn btn--small btn--primary" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20quiero%20automatizar%20la%20administraci%C3%B3n%20de%20mi%20restaurante" target="_blank" rel="noopener">Agendar llamada</a>
+    </div>
+  </header>
+
+  <main class="apage" id="contenido">
+    <div class="container">
+
+      <nav class="apage__crumbs" aria-label="Ruta de navegación">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">→</span>
+        <strong>Automatizar un restaurante</strong>
+      </nav>
+
+      <section class="apage__hero">
+        <div>
+          <p class="apage__kicker">Guía para dueños de restaurantes</p>
+          <h1 class="apage__title">Cómo automatizar la carga de facturas y el stock de tu restaurante</h1>
+          <p class="apage__lead">Cargar facturas de proveedores a mano es de esas tareas que no se ven en ningún reporte y sin embargo se comen las horas de alguien todas las semanas. Esta guía explica qué parte de esa administración se puede automatizar hoy, cómo funciona y qué hace falta para empezar.</p>
+          <div class="apage__hero-ctas">
+            <a class="btn btn--primary" href="#empezar">Qué necesito para empezar</a>
+            <a class="btn btn--ghost" href="agentes/sistema-fudo.html">Ver el sistema funcionando</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="apage__section">
+        <h2>El trabajo invisible que se come tu semana</h2>
+        <div class="apage__body">
+          <p>Un restaurante mediano recibe decenas de facturas de proveedores por semana. Cada una hay que leerla, identificar cada producto, anotar la cantidad y el precio, y cargarla en el sistema de gestión. Nadie factura esas horas, pero se pagan igual.</p>
+          <p>El costo real no es solo el tiempo. Es que <strong>los datos llegan tarde</strong>. Si las facturas de esta semana se cargan recién el lunes que viene, durante seis días tomaste decisiones —qué comprar, a cuánto vender— con costos viejos. Y cuando un proveedor aumenta un 8% sin avisar, te enterás cuando cierra el mes y el margen ya no está.</p>
+          <p>La otra cara es el error de tipeo. Un cero de más en el precio de un insumo desarma el costo de todas las recetas que lo usan, y eso no salta hasta que alguien lo busca.</p>
+        </div>
+      </section>
+
+      <section class="apage__section">
+        <h2>Qué se puede automatizar de verdad</h2>
+        <div class="apage__body">
+          <p>Conviene ser concreto, porque "automatizar el restaurante" no quiere decir nada. Estas son las tareas administrativas que hoy se pueden delegar a un sistema:</p>
+        </div>
+        <ol class="apage__steps">
+          <li class="apage__step"><div><h3>Cargar las facturas de proveedores</h3><p>Leer el comprobante, reconocer cada producto con su cantidad y su precio, y registrarlo en el sistema de gestión actualizando costo y stock.</p></div></li>
+          <li class="apage__step"><div><h3>Detectar qué falta y armar la orden de compra</h3><p>Cruzar el stock real con el consumo de los últimos días para saber qué pedir, a qué proveedor y en qué cantidad, antes de quedarte sin producto.</p></div></li>
+          <li class="apage__step"><div><h3>Calcular la producción del día</h3><p>Cuánto hay que elaborar de cada preparación según lo que hay hecho y lo que se proyecta vender, y descontar los insumos al cerrarla.</p></div></li>
+          <li class="apage__step"><div><h3>Responder preguntas sobre el negocio</h3><p>Cuánto se vendió ayer, cuánto stock queda de un insumo, a cuánto salió el kilo la última vez. Consultas que hoy implican entrar al sistema y armar un reporte.</p></div></li>
+        </ol>
+        <div class="apage__body" style="margin-top:26px">
+          <p>Lo que <em>no</em> conviene automatizar es la decisión. La orden de compra la aprueba una persona; el sistema la prepara.</p>
+        </div>
+      </section>
+
+      <section class="apage__section">
+        <h2>Cómo funciona la carga de una factura por foto</h2>
+        <div class="apage__body">
+          <p>Es la que más impacto tiene, porque es la más repetitiva. El circuito es este:</p>
+        </div>
+        <ol class="apage__steps">
+          <li class="apage__step"><div><h3>Le sacás una foto a la factura</h3><p>Con el celular, apoyada en la mesada. No hace falta escanearla ni que esté derecha.</p></div></li>
+          <li class="apage__step"><div><h3>La mandás por WhatsApp</h3><p>Al mismo número de siempre. Sin abrir el sistema de gestión ni entrar a ninguna aplicación nueva.</p></div></li>
+          <li class="apage__step"><div><h3>El agente la lee y la interpreta</h3><p>Identifica proveedor, productos, cantidades y precios. Reconoce los productos aunque cada proveedor los nombre distinto: lo que para uno es "muzzarella x 5kg" para otro es "MUZZA BARRA 5 KG".</p></div></li>
+          <li class="apage__step"><div><h3>Te muestra lo que entendió</h3><p>Antes de cargar nada. Vos confirmás o corregís, y recién ahí se registra en el sistema con el stock y los costos actualizados.</p></div></li>
+        </ol>
+        <div class="apage__body" style="margin-top:26px">
+          <p>Ese último paso importa: un sistema que carga sin preguntar termina generando desconfianza y trabajo de auditoría. La confirmación humana lleva segundos y evita eso.</p>
+        </div>
+      </section>
+
+      <section class="apage__section">
+        <h2>Si usás Fudo, esto te va a interesar</h2>
+        <div class="apage__body">
+          <p><a href="https://fu.do/" target="_blank" rel="noopener">Fudo</a> es un buen sistema de gestión gastronómica y muy usado en Argentina. Desde hace un tiempo <strong>incorporó carga automática de facturas</strong> dentro de su plataforma: subís la foto o el PDF y su inteligencia artificial extrae los datos principales para que los confirmes.</p>
+          <p>Vale decirlo con todas las letras, porque si esa función te alcanza, ya la tenés incluida y no necesitás nada más.</p>
+          <p>La diferencia aparece cuando el problema es más grande que una factura suelta:</p>
+          <ul class="mod__feats">
+            <li><strong>Todo pasa por WhatsApp</strong>, no dentro del sistema. Quien recibe la mercadería le saca la foto y sigue trabajando; no necesita usuario, capacitación ni entrar a una pantalla.</li>
+            <li><strong>La factura no termina en sí misma.</strong> El mismo agente encadena lo que viene después: qué reponer, qué producir, cómo quedaron los márgenes.</li>
+            <li><strong>Le podés preguntar.</strong> "¿Cuánto vendimos ayer?", "¿cuánto stock queda de X?" — y responde en el momento, sin abrir un reporte.</li>
+            <li><strong>Se adapta a cómo trabaja tu negocio</strong>, incluidas las reglas propias que ningún sistema estándar contempla.</li>
+          </ul>
+          <p>Si lo que necesitás es cargar facturas y nada más, usá lo que Fudo ya trae. Si lo que te falta es que alguien <em>opere</em> el sistema por vos, ahí entra un agente.</p>
+        </div>
+      </section>
+
+      <section class="apage__section" id="empezar">
+        <h2>Qué hace falta para empezar</h2>
+        <div class="apage__body">
+          <p>Menos de lo que la mayoría supone:</p>
+          <ul class="mod__feats">
+            <li><strong>Un sistema de gestión que ya uses.</strong> Fudo es el más común en gastronomía, pero cualquiera con API o webhook sirve.</li>
+            <li><strong>Un número de WhatsApp del negocio.</strong> El que ya tenés.</li>
+            <li><strong>Tus reglas escritas.</strong> Qué proveedor para qué producto, qué margen buscás, qué te tiene que avisar. Esto es lo único que lleva tiempo, y es una conversación, no un documento.</li>
+          </ul>
+          <p>No hace falta cambiar de sistema, migrar datos ni comprar hardware. Y no hace falta saber de tecnología: el agente se usa escribiendo, como cualquier chat.</p>
+          <p>Se puede arrancar por un solo módulo —el de facturas suele ser el primero— y sumar el resto cuando el negocio lo pida.</p>
+        </div>
+      </section>
+
+      <section class="apage__section">
+        <h2>Preguntas frecuentes</h2>
+        <div class="apage__body">
+          <h3>¿Sirve si las facturas me llegan en papel y arrugadas?</h3>
+          <p>Sí. Se leen fotos de facturas de papel, escaneos y PDF. Lo que importa es que el texto se distinga; no hace falta que esté derecha ni prolija.</p>
+
+          <h3>¿Y si el agente entiende mal un producto?</h3>
+          <p>Por eso confirma antes de cargar. Vos corregís sobre la marcha y esa corrección queda aprendida para las próximas facturas de ese proveedor.</p>
+
+          <h3>¿Cuánto tarda en estar funcionando?</h3>
+          <p>La mayoría de las implementaciones están operando en semanas, no meses. El plazo concreto depende de cuántos módulos y de qué tan particulares sean tus reglas.</p>
+
+          <h3>¿Necesito saber de tecnología?</h3>
+          <p>No. La implementación la hacemos nosotros y el uso diario es mandar un mensaje de WhatsApp.</p>
+
+          <h3>¿Funciona si no uso Fudo?</h3>
+          <p>Sí. Fudo es el caso más frecuente porque es el más usado en gastronomía, pero el circuito es el mismo con cualquier sistema que permita integración.</p>
+        </div>
+      </section>
+
+      <section class="apage__cta">
+        <h2>¿Querés verlo funcionando con tus facturas?</h2>
+        <p>En una llamada de 30 minutos miramos cómo trabajás hoy y te mostramos el circuito completo con tus procesos reales. Sin costo y sin compromiso.</p>
+        <div class="apage__cta-actions">
+          <a class="btn btn--primary btn--xl" href="https://wa.me/5493412685888?text=Hola%20Integra%20IA%2C%20le%C3%AD%20la%20gu%C3%ADa%20y%20quiero%20automatizar%20la%20administraci%C3%B3n%20de%20mi%20restaurante" target="_blank" rel="noopener">Agendar diagnóstico gratuito</a>
+          <a class="btn btn--ghost btn--xl" href="agentes/sistema-fudo.html">Ver los videos del sistema</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Integra IA — Rosario, Argentina. Todos los derechos reservados.</p>
+      <nav class="footer__legal" aria-label="Legales">
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos.html">Términos</a>
+        <a href="index.html">Inicio</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cómo automatizar la carga de facturas y el stock de tu restaurante",
+    "description": "Guía práctica para dejar de cargar facturas de proveedores a mano: qué se puede automatizar en un restaurante, cómo funciona la carga por foto y qué hace falta para empezar.",
+    "inLanguage": "es-AR",
+    "mainEntityOfPage": "https://integraarg.com/automatizar-restaurante-fudo.html",
+    "image": "https://integraarg.com/assets/agentes/sistema-fudo.webp",
+    "author": { "@type": "Organization", "name": "Integra IA", "url": "https://integraarg.com/" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Integra IA",
+      "url": "https://integraarg.com/",
+      "logo": { "@type": "ImageObject", "url": "https://integraarg.com/assets/logo.png" }
+    },
+    "about": ["Automatización de restaurantes", "Carga automática de facturas", "Fudo", "Gestión gastronómica"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Sirve si las facturas me llegan en papel y arrugadas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Se leen fotos de facturas de papel, escaneos y PDF. Lo que importa es que el texto se distinga; no hace falta que esté derecha ni prolija." } },
+      { "@type": "Question", "name": "¿Y si el agente entiende mal un producto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Por eso confirma antes de cargar. Vos corregís sobre la marcha y esa corrección queda aprendida para las próximas facturas de ese proveedor." } },
+      { "@type": "Question", "name": "¿Cuánto tarda en estar funcionando?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La mayoría de las implementaciones están operando en semanas, no meses. El plazo concreto depende de cuántos módulos y de qué tan particulares sean las reglas del negocio." } },
+      { "@type": "Question", "name": "¿Necesito saber de tecnología?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. La implementación la hace Integra IA y el uso diario es mandar un mensaje de WhatsApp." } },
+      { "@type": "Question", "name": "¿Funciona si no uso Fudo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Fudo es el caso más frecuente porque es el más usado en gastronomía, pero el circuito es el mismo con cualquier sistema que permita integración." } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://integraarg.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Automatizar un restaurante", "item": "https://integraarg.com/automatizar-restaurante-fudo.html" }
+    ]
+  }
+  </script>
+</body>
+</html>
