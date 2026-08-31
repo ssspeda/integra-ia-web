@@ -105,12 +105,29 @@
 
       <!-- ── QUÉ ES ── -->
       <section class="apage__section">
-        <h2>Qué es y por qué es el que más se vende</h2>
-        <div class="apage__body">
-          <p>Fudo es un gran sistema de gestión, pero alguien lo tiene que <em>usar</em>: cargar cada factura, actualizar cada costo, armar cada orden de compra, revisar el stock. Ese trabajo invisible se come horas todas las semanas y es donde se cuelan los errores que después no cierran a fin de mes.</p>
-          <p>El sistema agéntico modular hace ese trabajo por vos. No es un chatbot pegado por afuera: es un agente que <strong>opera dentro de Fudo</strong>, con acceso a tus productos, tus costos y tu stock, y que recibe órdenes por WhatsApp como se las darías a un empleado.</p>
-          <p>Si todavía estás viendo qué se puede automatizar en un restaurante y cómo funciona el circuito, escribimos una <a href="../automatizar-restaurante-fudo">guía con todo el detalle</a>.</p>
-          <p>Es modular a propósito. Podés arrancar solo con el módulo de facturas —que es por lejos el más pedido— y sumar el resto cuando quieras. Cada módulo funciona por su cuenta; juntos, cubren la operación completa.</p>
+        <div class="fudobot__row">
+          <div>
+            <h2>Qué es y por qué es el que más se vende</h2>
+            <div class="apage__body">
+              <p>Fudo es un gran sistema de gestión, pero alguien lo tiene que <em>usar</em>: cargar cada factura, actualizar cada costo, armar cada orden de compra, revisar el stock. Ese trabajo invisible se come horas todas las semanas y es donde se cuelan los errores que después no cierran a fin de mes.</p>
+              <p>El sistema agéntico modular hace ese trabajo por vos. No es un chatbot pegado por afuera: es un agente que <strong>opera dentro de Fudo</strong>, con acceso a tus productos, tus costos y tu stock, y que recibe órdenes por WhatsApp como se las darías a un empleado.</p>
+              <p>Si todavía estás viendo qué se puede automatizar en un restaurante y cómo funciona el circuito, escribimos una <a href="../automatizar-restaurante-fudo">guía con todo el detalle</a>.</p>
+              <p>Es modular a propósito. Podés arrancar solo con el módulo de facturas —que es por lejos el más pedido— y sumar el resto cuando quieras. Cada módulo funciona por su cuenta; juntos, cubren la operación completa.</p>
+            </div>
+          </div>
+
+          <!-- Robot flotante: RENDER ESTÁTICO del mismo modelo del hero, no
+               three.js. Acá el robot es decorativo y esta página tiene que
+               priorizar los 4 videos: la imagen pesa ~44 KB contra los 861 KB
+               del .glb más three.js. La flotación la hace CSS.
+               Para regenerar la imagen: tools/render-robot.html (ver README). -->
+          <figure class="fudobot" aria-hidden="true">
+            <span class="fudobot__aura"></span>
+            <span class="fudobot__sway">
+              <img class="fudobot__img" src="../assets/robot-flotante.webp" alt=""
+                   width="760" height="774" loading="lazy" decoding="async" />
+            </span>
+          </figure>
         </div>
       </section>
 

@@ -2085,6 +2085,54 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.08; letter-spacing: -
   .mk-head { font-size: 0.75rem; }
 }
 
+/* ═══════════ ROBOT FLOTANTE (agentes/sistema-fudo) ═══════════ */
+/* Es una IMAGEN (render estático del modelo del hero), no three.js: esta
+   página tiene que priorizar los 4 videos y el .glb pesa 20x más.
+   La flotación imita la del 3D anidando dos animaciones con los MISMOS
+   períodos que js/robot3d.js — 4.2s el sube-y-baja, 6.7s el balanceo largo.
+   Al no ser múltiplos entre sí, el vaivén nunca repite el mismo recorrido.
+   El bloque global de prefers-reduced-motion las frena solo. */
+.fudobot__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.66fr);
+  gap: clamp(24px, 4.5vw, 60px);
+  align-items: center;
+}
+.fudobot {
+  position: relative;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+/* Aura: separa al robot del fondo. El render no trae fondo y el azul del
+   logo infinito es casi el mismo tono que --bg. */
+.fudobot__aura {
+  position: absolute;
+  inset: 4% -10% 10%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 58% 54% at 50% 46%, rgba(43, 75, 255, 0.34), transparent 70%);
+}
+.fudobot__sway { position: relative; display: block; width: 100%; }
+.fudobot__img { display: block; width: 100%; height: auto; }
+
+.fudobot__sway { animation: fudobot-sway 6.7s ease-in-out infinite alternate; }
+.fudobot__img { animation: fudobot-bob 4.2s ease-in-out infinite alternate; }
+
+@keyframes fudobot-bob {
+  from { transform: translateY(5px); }
+  to { transform: translateY(-14px); }
+}
+@keyframes fudobot-sway {
+  from { transform: translateY(3px) rotate(-0.7deg); }
+  to { transform: translateY(-3px) rotate(0.7deg); }
+}
+
+@media (max-width: 900px) {
+  .fudobot__row { grid-template-columns: 1fr; }
+  .fudobot { max-width: 320px; margin: 8px auto 0; }
+}
+
 /* ═══════════ REDUCED MOTION ═══════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<!-- Render estático del robot para assets/robot-flotante.webp (ver README).
+     Servir la RAÍZ del proyecto y abrir /tools/render-robot.html; la imagen
+     sale de window.__png. No se deploya: build.ps1 no copia tools/. -->
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}
+</script></head><body>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+const W = 1200, H = 1400;
+// preserveDrawingBuffer: sin esto toDataURL devuelve el buffer ya limpiado
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(2);
+renderer.setSize(W, H);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.34; // más alto que el hero (1.1): acá va sobre --bg-2 sin aura detrás
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+// Mismo encuadre que el hero, pero un toque más cerca porque acá el robot
+// es el único elemento del recuadro y no comparte espacio con el texto.
+const camera = new THREE.PerspectiveCamera(34, W / H, 0.1, 30);
+camera.position.set(0, 1.28, 4.05);
+camera.lookAt(0, 1.02, 0);
+
+// Luces idénticas a js/robot3d.js
+scene.add(new THREE.AmbientLight(0xbfd0ff, 0.7));
+const key = new THREE.DirectionalLight(0xffffff, 2.4);
+key.position.set(3, 5, 4);
+scene.add(key);
+const rimCyan = new THREE.PointLight(0x4cc3f7, 7, 12);
+rimCyan.position.set(-2.6, 1.6, 2.2);
+scene.add(rimCyan);
+const rimViolet = new THREE.PointLight(0x8b5cf6, 9, 12);
+rimViolet.position.set(2.6, 2.4, -2.4);
+scene.add(rimViolet);
+
+const loader = new GLTFLoader();
+loader.setMeshoptDecoder(MeshoptDecoder);
+const gltf = await loader.loadAsync("../assets/robot.glb");
+const robot = gltf.scene;
+
+let box = new THREE.Box3().setFromObject(robot);
+const size = new THREE.Vector3();
+box.getSize(size);
+robot.scale.setScalar(2.1 / size.y);
+robot.rotation.y = -Math.PI / 2;
+box = new THREE.Box3().setFromObject(robot);
+robot.position.x -= (box.min.x + box.max.x) / 2;
+robot.position.z -= (box.min.z + box.max.z) / 2;
+robot.position.y -= box.min.y;
+scene.add(robot);
+
+// Dos frames: el primero puede salir antes de que suban las texturas
+renderer.render(scene, camera);
+await new Promise((r) => requestAnimationFrame(r));
+renderer.render(scene, camera);
+window.__png = renderer.domElement.toDataURL("image/png");
+</script></body></html>

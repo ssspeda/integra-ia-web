@@ -50,6 +50,32 @@ sin extensión. Sin ese flag, en local todos los links dan 404.
 Parámetros de debug en la URL: `?paint=0.6` (congela el pintado del logo),
 `?blinkhold`, `?wavehold`, `?wave`.
 
+## Robot 3D
+
+El hero del index usa el modelo real (`assets/robot.glb`, three.js) con
+flotación, seguimiento del mouse, parpadeo y saludo.
+
+La página de Fudo usa un **render estático** del mismo modelo
+(`assets/robot-flotante.webp`, ~44 KB) con la flotación hecha en CSS. Es a
+propósito: ahí el robot es decorativo y la página tiene que priorizar los 4
+videos — el `.glb` pesa 861 KB más three.js.
+
+Para regenerar la imagen:
+
+```
+npx http-server -p 8080 -e html      # desde la RAÍZ del proyecto
+```
+
+Abrir `http://127.0.0.1:8080/tools/render-robot.html`. La página renderiza un
+frame y deja el PNG en `window.__png` (data URL). Guardarlo, recortar el
+transparente sobrante y convertir a WebP a 760px de ancho.
+
+La cámara y las luces son las mismas que `js/robot3d.js`; lo único distinto es
+`toneMappingExposure` (1.34 en vez de 1.1), porque en la página de Fudo el
+robot va sobre el fondo oscuro sin el aura del hero detrás.
+
+`tools/` no se deploya: `build.ps1` no lo copia.
+
 ## Deploy
 
 Dominio de producción: **integraarg.com** (registrado en Cloudflare).
