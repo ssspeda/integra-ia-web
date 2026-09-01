@@ -38,6 +38,12 @@
   <link rel="preload" as="image" href="assets/logo.webp" />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-700-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400-latin.woff2" crossorigin />
+  <!-- Los <script defer> del final bajan con prioridad baja y compiten con las
+       7 fuentes. La animación del logo (elemento LCP) no arranca hasta que GSAP
+       evalúa, así que adelantarlos recorta LCP sin cambiar nada de comportamiento. -->
+  <link rel="preload" as="script" href="js/vendor/gsap.min.js" />
+  <link rel="preload" as="script" href="js/vendor/ScrollTrigger.min.js" />
+  <link rel="preload" as="script" href="js/main.js" />
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <noscript>
@@ -1198,7 +1204,7 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.min.js",
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
     }
   }

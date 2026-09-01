@@ -38,6 +38,12 @@
   <link rel="preload" as="image" href="assets/logo.webp" />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-700-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400-latin.woff2" crossorigin />
+  <!-- Los <script defer> del final bajan con prioridad baja y compiten con las
+       7 fuentes. La animación del logo (elemento LCP) no arranca hasta que GSAP
+       evalúa, así que adelantarlos recorta LCP sin cambiar nada de comportamiento. -->
+  <link rel="preload" as="script" href="js/vendor/gsap.min.js?v=47da594c" />
+  <link rel="preload" as="script" href="js/vendor/ScrollTrigger.min.js?v=ba1fa78e" />
+  <link rel="preload" as="script" href="js/main.js?v=fcdd2e43" />
   <link rel="stylesheet" href="css/fonts.css?v=ca993d10" />
   <link rel="stylesheet" href="css/styles.css?v=46c4eec4" />
   <noscript>
@@ -1190,7 +1196,7 @@
   <!-- GSAP self-hosted (antes CDN jsDelivr): una dependencia externa menos -->
   <script src="js/vendor/gsap.min.js?v=47da594c" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js?v=ba1fa78e" defer></script>
-  <script src="js/main.js?v=0aee6e5d" defer></script>
+  <script src="js/main.js?v=fcdd2e43" defer></script>
   <script src="js/extras.js?v=8568542a" defer></script>
   <script src="js/video.js?v=ee3236bb" defer></script>
 
@@ -1198,7 +1204,7 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.min.js",
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
     }
   }

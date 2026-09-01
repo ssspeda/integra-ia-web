@@ -170,7 +170,10 @@
     })();
 
     /* HERO: el logo se "pinta" con UNA pincelada continua (path en forma de 8).
-       Sin JS o sin GSAP el trazo queda sin animar → logo completo visible. */
+       Sin JS o sin GSAP el trazo queda sin animar → logo completo visible.
+       NO pasarlo a CSS: se probó y empeora el LCP ~700ms. Chrome cuenta el
+       <image> como pintado apenas renderiza, aunque la máscara lo tape;
+       animarlo con CSS retrasa el registro de ese paint. */
     const paintPath = document.getElementById("paintPath");
     const paintAll = document.getElementById("paintAll");
     if (paintPath && paintAll) {
@@ -243,6 +246,25 @@
       let len = 0;
       let lastProgress = 0;
 
+      /* Tabla de muestreo del path.
+         getPointAtLength() consulta la geometría del SVG y es caro; la
+         búsqueda binaria lo llamaba 22 veces POR FRAME de scroll, más una
+         para la chispa. Ahora el path se muestrea UNA vez por build y las
+         búsquedas corren sobre estos arrays, sin tocar el SVG. */
+      const SAMPLES = 512;
+      const sx = new Float32Array(SAMPLES + 1);
+      const sy = new Float32Array(SAMPLES + 1);
+
+      let needsSample = true;
+      function samplePath() {
+        for (let i = 0; i <= SAMPLES; i++) {
+          const p = drawPath.getPointAtLength((i / SAMPLES) * len);
+          sx[i] = p.x;
+          sy[i] = p.y;
+        }
+        needsSample = false;
+      }
+
       /* El path se genera desde la posición REAL de cada nodo:
          pasa exacto por todos sin importar resolución ni altura de tarjetas */
       function buildPath() {
@@ -277,6 +299,7 @@
         const grad = document.getElementById("path-grad");
         if (grad) grad.setAttribute("y2", h); // gradiente cubre el alto real
         len = drawPath.getTotalLength();
+        needsSample = true; // se muestrea al primer scroll, no en la carga
         gsap.set(drawPath, { strokeDasharray: len, strokeDashoffset: len * (1 - lastProgress) });
       }
       buildPath();
@@ -284,6 +307,7 @@
       // Paleta cíclica con violeta y púrpura: el cambio se nota fuerte al scrollear
       const PALETTE = ["#2b4bff", "#8b5cf6", "#c44bf7", "#4cc3f7", "#7dd6ff", "#2b4bff"];
       const gradStops = document.querySelectorAll("#path-grad stop");
+      const lastStopColor = new Array(gradStops.length);
 
       /* La punta del trazo sigue una línea fija del viewport (62% de alto).
          El progreso NO es lineal con el scroll: se busca el largo de path
@@ -291,13 +315,26 @@
          así que una búsqueda binaria alcanza). Sin esto el trazo se
          rellenaba desfasado respecto de lo que se ve en pantalla. */
       function lenAtY(yTarget) {
-        let lo = 0, hi = len;
-        for (let i = 0; i < 22; i++) {
-          const mid = (lo + hi) / 2;
-          if (drawPath.getPointAtLength(mid).y < yTarget) lo = mid;
+        if (yTarget <= sy[0]) return 0;
+        if (yTarget >= sy[SAMPLES]) return len;
+        let lo = 0, hi = SAMPLES;
+        while (hi - lo > 1) {
+          const mid = (lo + hi) >> 1;
+          if (sy[mid] < yTarget) lo = mid;
           else hi = mid;
         }
-        return (lo + hi) / 2;
+        // interpolación entre las dos muestras que encierran el objetivo
+        const span = sy[hi] - sy[lo];
+        const f = span > 0 ? (yTarget - sy[lo]) / span : 0;
+        return ((lo + f) / SAMPLES) * len;
+      }
+
+      /* Punto del path a una longitud dada, desde la misma tabla */
+      function pointAtLen(t) {
+        const u = Math.max(0, Math.min(SAMPLES, (t / len) * SAMPLES));
+        const i = Math.min(SAMPLES - 1, u | 0);
+        const f = u - i;
+        return { x: sx[i] + (sx[i + 1] - sx[i]) * f, y: sy[i] + (sy[i + 1] - sy[i]) * f };
       }
 
       ScrollTrigger.create({
@@ -306,6 +343,7 @@
         end: "bottom top",
         scrub: true,
         onUpdate() {
+          if (needsSample) samplePath();
           const jr = journey.getBoundingClientRect();
           const yTarget = Math.max(0, Math.min(jr.height, window.innerHeight * 0.62 - jr.top));
           const t = lenAtY(yTarget);
@@ -314,10 +352,15 @@
           // Colores del gradiente rotan suave con el scroll
           gradStops.forEach((stop, i) => {
             const c = (p * 2.5 + i * 0.3) % 1; // ciclo rápido + stops bien separados
-            stop.setAttribute("stop-color", gsap.utils.interpolate(PALETTE, c));
+            const col = gsap.utils.interpolate(PALETTE, c);
+            // escribir el atributo invalida el render del SVG: solo si cambió
+            if (lastStopColor[i] !== col) {
+              stop.setAttribute("stop-color", col);
+              lastStopColor[i] = col;
+            }
           });
           if (spark) {
-            const pt = drawPath.getPointAtLength(t);
+            const pt = pointAtLen(t);
             spark.setAttribute("transform", `translate(${pt.x}, ${pt.y})`);
             // visible solo mientras el trazo avanza; se apaga en los extremos
             spark.setAttribute("opacity", p > 0.004 && p < 0.996 ? "1" : "0");
